@@ -18,6 +18,10 @@ namespace CIT255_KT_list_builder.Models
         private int _itemID;
         private int _itemCost;
         private string _itemDescription;
+        private string _itemName;
+
+       
+
 
         #endregion
 
@@ -32,12 +36,16 @@ namespace CIT255_KT_list_builder.Models
             get { return _itemCost; }
             set { _itemCost = value; }
         }
-        public string itemDescription
+        public string ItemDescription
         {
             get { return _itemDescription; }
             set { _itemDescription = value; }
         }
-
+        public string ItemName
+        {
+            get { return _itemName; }
+            set { _itemName = value; }
+        }
         #endregion
 
         #region CONSTRUCTOR

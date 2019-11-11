@@ -75,10 +75,6 @@
     <Compile Include="Models\FighterMeleeWeapons.cs" />
     <Compile Include="Models\FighterRangedWeapons.cs" />
     <Compile Include="Models\FighterWargear.cs" />
-    <Compile Include="Models\GSC_Aberrant.cs" />
-    <Compile Include="Models\GSC_Acolyte.cs" />
-    <Compile Include="Models\GSC_Metamorph.cs" />
-    <Compile Include="Models\GSC_Neophyte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +92,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DataAccessLayer\ApplicationDataSheet.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,8 +103,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessLayer\" />
-    <Folder Include="DataAccessLayer\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DataAccessLayer\Image\Aberrant.PNG" />
+    <Resource Include="DataAccessLayer\Image\Aberrant2.PNG" />
+    <Resource Include="DataAccessLayer\Image\AcolyteFighter.PNG" />
+    <Resource Include="DataAccessLayer\Image\AcolyteHybrid.PNG" />
+    <Resource Include="DataAccessLayer\Image\AcolyteLeader.PNG" />
+    <Resource Include="DataAccessLayer\Image\MetamorphHybrid.PNG" />
+    <Resource Include="DataAccessLayer\Image\MetamorphLeader.PNG" />
+    <Resource Include="DataAccessLayer\Image\NeophyteGunner.PNG" />
+    <Resource Include="DataAccessLayer\Image\NeophyteHybrid.PNG" />
+    <Resource Include="DataAccessLayer\Image\NeophyteLeader.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

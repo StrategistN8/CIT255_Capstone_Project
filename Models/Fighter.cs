@@ -30,8 +30,17 @@ namespace CIT255_KT_list_builder.Models
         #region FIELDS
 
         private int _fighterID;
+        private int _limit;
+
         private string _fighterName;
-        private bool _isSpecialist;  
+        private string _fighterType;
+        private string _fighterFaction;
+        private string _imgFile;
+
+        private bool _isSpecialist;
+        private bool _isLimited;
+              
+
         private Specializations _fighterSpecialization; // Default to NONE for most fighters
         private List<FighterWargear> _fighterEquipmentList; // This will list all the items equipped to the fighter.
         private List<FighterMeleeWeapons> _fighterMeleeWeaponsOptions; 
@@ -41,6 +50,11 @@ namespace CIT255_KT_list_builder.Models
         #endregion
 
         #region PROPERTIES
+        public int Limit
+        {
+            get { return _limit; }
+            set { _limit = value; }
+        }
         public int FighterID
         {
             get { return _fighterID; }
@@ -51,10 +65,30 @@ namespace CIT255_KT_list_builder.Models
             get { return _fighterName; }
             set { _fighterName = value; }
         }
+        public string FighterType
+        {
+            get { return _fighterType; }
+            set { _fighterType = value; }
+        }
+        public string FighterFaction
+        {
+            get { return _fighterFaction; }
+            set { _fighterFaction = value; }
+        }
+        public string ImgFile
+        {
+            get { return _imgFile; }
+            set { _imgFile = value; }
+        }
         public bool IsSpecialist
         {
             get { return _isSpecialist; }
             set { _isSpecialist = value; }
+        }
+        public bool IsLimited
+        {
+            get { return _isLimited; }
+            set { _isLimited = value; }
         }
         public Specializations FighterSpecialization
         {

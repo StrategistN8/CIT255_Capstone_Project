@@ -9,15 +9,23 @@ namespace CIT255_KT_list_builder.Models
     class FighterList 
     {
         #region FIELDS       
+        private string _listName;
+
         private int _listID;
         private int _numberOfSpecialists;
         readonly int _maxNumberOfSpecialists = 4; // Game rules do not allow for more than 4 specialists in a list.
         private int _currentPoints;
         private int _maxPoints;
-        private List<Fighter> _fighters;
+        private List<Fighter> _availableFighters;
+        private List<Fighter> _selectedFighters;
         #endregion
 
         #region PROPERTIES
+        public string ListName
+        {
+            get { return _listName; }
+            set { _listName = value; }
+        }
         public int ListID
         {
             get { return _listID; }
@@ -38,11 +46,15 @@ namespace CIT255_KT_list_builder.Models
             get { return _maxPoints; }
             set { _maxPoints = value; }
         }
-
-        public List<Fighter> Fighters
+        public List<Fighter> AvailableFighters
         {
-            get { return _fighters; }
-            set { _fighters = value; }
+            get { return _availableFighters; }
+            set { _availableFighters = value; }
+        }
+        public List<Fighter> SelectedFighters
+        {
+            get { return _selectedFighters; }
+            set { _selectedFighters = value; }
         }
 
         #endregion
@@ -54,7 +66,6 @@ namespace CIT255_KT_list_builder.Models
         #region METHODS
 
         #endregion
-
-
+        
     }
 }
