@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CIT255_KT_list_builder.Models.Fighter" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_fighterEquipmentList" Hidden="true" />
+      <Field Name="_fighterFaction" Hidden="true" />
+      <Field Name="_fighterID" Hidden="true" />
+      <Field Name="_fighterMeleeWeaponsOptions" Hidden="true" />
+      <Field Name="_fighterName" Hidden="true" />
+      <Field Name="_fighterRangedWeaponOptions" Hidden="true" />
+      <Field Name="_fighterSpecialization" Hidden="true" />
+      <Field Name="_fighterSpecializationOptions" Hidden="true" />
+      <Field Name="_fighterType" Hidden="true" />
+      <Field Name="_fighterWargearOptions" Hidden="true" />
+      <Field Name="_imgFile" Hidden="true" />
+      <Field Name="_isLimited" Hidden="true" />
+      <Field Name="_isSpecialist" Hidden="true" />
+      <Field Name="_limit" Hidden="true" />
+      <Property Name="FighterEquipmentList" Hidden="true" />
+      <Property Name="FighterFaction" Hidden="true" />
+      <Property Name="FighterID" Hidden="true" />
+      <Property Name="FighterMeleeWeaponOptions" Hidden="true" />
+      <Property Name="FighterName" Hidden="true" />
+      <Property Name="FighterRangedWeaponOptions" Hidden="true" />
+      <Property Name="FighterSpecialization" Hidden="true" />
+      <Property Name="FighterSpecializationOptions" Hidden="true" />
+      <Property Name="FighterType" Hidden="true" />
+      <Property Name="FighterWargearOptions" Hidden="true" />
+      <Property Name="ImgFile" Hidden="true" />
+      <Property Name="IsLimited" Hidden="true" />
+      <Property Name="IsSpecialist" Hidden="true" />
+      <Property Name="Limit" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="CIT255_KT_list_builder.Models.Fighter.Specializations" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Fighter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAggCBAACAAgAkUwAFFAAJAAAAACCDAhAACAA=</HashCode>
+      <FileName>Models\Fighter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.App" Collapsed="true">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.KTViewModel" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PresentationLayer\KTViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterList" Collapsed="true">
+    <Position X="5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAgAAAAAAEAEAAgKEAAAQAAAEQAAIAAQAAAA=</HashCode>
+      <FileName>Models\FighterList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterMeleeWeapons" Collapsed="true">
+    <Position X="1" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FighterMeleeWeapons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterRangedWeapons" Collapsed="true">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FighterRangedWeapons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterWargear" Collapsed="true">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAABAAAAAgAAQAAEAAAACAAAAAAABAAAAQAA=</HashCode>
+      <FileName>Models\FighterWargear.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Properties.Resources" Collapsed="true">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Properties.Settings" Collapsed="true">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.BusinessLayer.KTBusiness" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLayer\KTBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

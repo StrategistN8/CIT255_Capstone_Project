@@ -55,19 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="KTViewModel.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="BusinessLayer\KTBusiness.cs" />
+    <Compile Include="ObservableObject.cs" />
+    <Compile Include="PresentationLayer\KTViewModel.cs" />
+    <Compile Include="PresentationLayer\Views\KTView.xaml.cs">
+      <DependentUpon>KTView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RelayCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Fighter.cs" />
@@ -92,6 +90,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DataAccessLayer\ApplicationDataSheet.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -101,10 +100,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinessLayer\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="DataAccessLayer\Image\Aberrant.PNG" />
     <Resource Include="DataAccessLayer\Image\Aberrant2.PNG" />
@@ -116,6 +112,12 @@
     <Resource Include="DataAccessLayer\Image\NeophyteGunner.PNG" />
     <Resource Include="DataAccessLayer\Image\NeophyteHybrid.PNG" />
     <Resource Include="DataAccessLayer\Image\NeophyteLeader.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="PresentationLayer\Views\KTView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

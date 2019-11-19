@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CIT255_KT_list_builder
+namespace CIT255_KT_list_builder.PresentationLayer.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for KTView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class KTView : Window
     {
-        public MainWindow()
+        public KTView()
         {
             InitializeComponent();
         }
