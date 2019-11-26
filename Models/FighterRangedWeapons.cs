@@ -22,6 +22,14 @@ namespace CIT255_KT_list_builder.Models
         #endregion
 
         #region CONSTRUCTOR
+        public FighterRangedWeapons(int id, int cost, string name, string description)
+            : base (id, cost, name, description)
+        {
+            ItemID = id;
+            ItemCost = cost;
+            ItemDescription = description;
+            ItemName = name;
+        }
         #endregion
 
         #region METHODS

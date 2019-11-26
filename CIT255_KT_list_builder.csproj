@@ -60,6 +60,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BusinessLayer\KTBusiness.cs" />
+    <Compile Include="DataAccessLayer\FighterRepository.cs" />
+    <Compile Include="DataAccessLayer\IRepository.cs" />
+    <Compile Include="Data\SeedData.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PresentationLayer\KTViewModel.cs" />
     <Compile Include="PresentationLayer\Views\KTView.xaml.cs">
@@ -91,7 +94,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
-    <None Include="DataAccessLayer\ApplicationDataSheet.xlsx" />
+    <None Include="Data\ApplicationDataSheet.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,16 +105,16 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="DataAccessLayer\Image\Aberrant.PNG" />
-    <Resource Include="DataAccessLayer\Image\Aberrant2.PNG" />
-    <Resource Include="DataAccessLayer\Image\AcolyteFighter.PNG" />
-    <Resource Include="DataAccessLayer\Image\AcolyteHybrid.PNG" />
-    <Resource Include="DataAccessLayer\Image\AcolyteLeader.PNG" />
-    <Resource Include="DataAccessLayer\Image\MetamorphHybrid.PNG" />
-    <Resource Include="DataAccessLayer\Image\MetamorphLeader.PNG" />
-    <Resource Include="DataAccessLayer\Image\NeophyteGunner.PNG" />
-    <Resource Include="DataAccessLayer\Image\NeophyteHybrid.PNG" />
-    <Resource Include="DataAccessLayer\Image\NeophyteLeader.PNG" />
+    <Resource Include="Data\Image\Aberrant.PNG" />
+    <Resource Include="Data\Image\Aberrant2.PNG" />
+    <Resource Include="Data\Image\AcolyteFighter.PNG" />
+    <Resource Include="Data\Image\AcolyteHybrid.PNG" />
+    <Resource Include="Data\Image\AcolyteLeader.PNG" />
+    <Resource Include="Data\Image\MetamorphHybrid.PNG" />
+    <Resource Include="Data\Image\MetamorphLeader.PNG" />
+    <Resource Include="Data\Image\NeophyteGunner.PNG" />
+    <Resource Include="Data\Image\NeophyteHybrid.PNG" />
+    <Resource Include="Data\Image\NeophyteLeader.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="PresentationLayer\Views\KTView.xaml">

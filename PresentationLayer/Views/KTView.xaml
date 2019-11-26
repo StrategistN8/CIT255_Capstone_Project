@@ -6,7 +6,36 @@
         xmlns:local="clr-namespace:CIT255_KT_list_builder.PresentationLayer.Views"
         mc:Ignorable="d"
         Title="KTView" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
         
+    </Window.Resources>
+    <!--Main Grid-->
+    <Grid>
+        <!--Inner Grid-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--List Display-->
+            <DataGrid
+                Grid.Row="0"
+                Grid.Column="0">
+            </DataGrid>
+            
+            <!-- Unit Data Display -->
+            <Label Content="{Binding}"/>
+            <Image Source="{Binding }"/>
+            <ComboBox>
+               
+            </ComboBox>
+
+
+
+        </Grid>
     </Grid>
 </Window>
