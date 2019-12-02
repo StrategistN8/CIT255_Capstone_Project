@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -60,13 +63,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BusinessLayer\KTBusiness.cs" />
-    <Compile Include="DataAccessLayer\FighterRepository.cs" />
-    <Compile Include="DataAccessLayer\IRepository.cs" />
-    <Compile Include="Data\SeedData.cs" />
+    <Compile Include="BusinessLayer\FighterRepository.cs" />
+    <Compile Include="BusinessLayer\IRepository.cs" />
+    <Compile Include="DataAccessLayer\DataConfig.cs" />
+    <Compile Include="DataAccessLayer\DataServiceJSON.cs" />
+    <Compile Include="DataAccessLayer\Data\SeedData.cs" />
+    <Compile Include="DataAccessLayer\IDataService.cs" />
+    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="Models\DataTypes.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="PresentationLayer\KTViewModel.cs" />
-    <Compile Include="PresentationLayer\Views\KTView.xaml.cs">
-      <DependentUpon>KTView.xaml</DependentUpon>
+    <Compile Include="ViewModels\KTViewModel.cs" />
+    <Compile Include="Views\KTBuilderWindow.xaml.cs">
+      <DependentUpon>KTBuilderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RelayCommand.cs" />
   </ItemGroup>
@@ -94,7 +102,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
-    <None Include="Data\ApplicationDataSheet.xlsx" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="DataAccessLayer\Data\ApplicationDataSheet.xlsx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -105,19 +115,19 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Data\Image\Aberrant.PNG" />
-    <Resource Include="Data\Image\Aberrant2.PNG" />
-    <Resource Include="Data\Image\AcolyteFighter.PNG" />
-    <Resource Include="Data\Image\AcolyteHybrid.PNG" />
-    <Resource Include="Data\Image\AcolyteLeader.PNG" />
-    <Resource Include="Data\Image\MetamorphHybrid.PNG" />
-    <Resource Include="Data\Image\MetamorphLeader.PNG" />
-    <Resource Include="Data\Image\NeophyteGunner.PNG" />
-    <Resource Include="Data\Image\NeophyteHybrid.PNG" />
-    <Resource Include="Data\Image\NeophyteLeader.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\Aberrant.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\Aberrant2.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\AcolyteFighter.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\AcolyteHybrid.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\AcolyteLeader.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\MetamorphHybrid.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\MetamorphLeader.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\NeophyteGunner.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\NeophyteHybrid.PNG" />
+    <Resource Include="DataAccessLayer\Data\Image\NeophyteLeader.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="PresentationLayer\Views\KTView.xaml">
+    <Page Include="Views\KTBuilderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

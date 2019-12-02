@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CIT255_KT_list_builder.Models;
+using CIT255_KT_list_builder.DataAccessLayer;
 
 namespace CIT255_KT_list_builder.BusinessLayer
 {
@@ -14,14 +16,17 @@ namespace CIT255_KT_list_builder.BusinessLayer
 
         #region FIELDS
 
+
+
         #endregion
 
         #region PROPERTIES
+       // public FileIoMessage FileIoStatus { get; set; }
 
         #endregion
 
         #region CONSTRUCTOR
-        
+
         /// <summary>
         /// Default Constructor: 
         /// </summary>
@@ -32,6 +37,25 @@ namespace CIT255_KT_list_builder.BusinessLayer
         #endregion
 
         #region METHODS
+
+        private Fighter GetFighter(int id)
+        {
+            Fighter newFighter = null;
+            //FileIoStatus = FileIoMessage.NONE;
+
+            try
+            {
+                using (FighterRepository fRepository = new FighterRepository())
+                {
+
+                }
+            }
+
+
+        }
+
+
+
 
         #endregion
     }

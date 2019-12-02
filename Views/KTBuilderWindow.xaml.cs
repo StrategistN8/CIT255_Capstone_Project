@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CIT255_KT_list_builder.PresentationLayer.Views
+namespace CIT255_KT_list_builder.Views
 {
     /// <summary>
-    /// Interaction logic for KTView.xaml
+    /// Interaction logic for KTBuilderWindow.xaml
     /// </summary>
-    public partial class KTView : Window
+    public partial class KTBuilderWindow : Window
     {
-        public KTView()
+        public KTBuilderWindow()
         {
             InitializeComponent();
         }

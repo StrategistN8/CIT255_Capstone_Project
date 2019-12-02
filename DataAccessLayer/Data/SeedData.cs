@@ -9,51 +9,7 @@ namespace CIT255_KT_list_builder.Data
 {
     class SeedData
     {
-        // todo: move to business layer:
-        #region FIELDS
-
-        private FighterList _currentRoster;
-        private List<FighterList> _availableRosters;
-        private Fighter _currentFighter;     
-        private List<Fighter> _availableFighters;
-        private FighterWargear _selectedWargear;
-        private List<FighterWargear> _availableWargear;
-
-        #endregion
-
         #region PROPERTIES
-
-        public FighterList CurrentRoster
-        {
-            get { return _currentRoster; }
-            set { _currentRoster = value; }
-        }
-        public List<FighterList> AvailableRosters
-        {
-            get { return _availableRosters; }
-            set { _availableRosters = value; }
-        }
-        public Fighter CurrentFighter
-        {
-            get { return _currentFighter; }
-            set { _currentFighter = value; }
-        }
-        public List<Fighter> AvailableFighters
-        {
-            get { return _availableFighters; }
-            set { _availableFighters = value; }
-        }
-        public FighterWargear SelectedWargear
-        {
-            get { return _selectedWargear; }
-            set { _selectedWargear = value; }
-        }
-        public List<FighterWargear> AvailableWargear
-        {
-            get { return _availableWargear; }
-            set { _availableWargear = value; }
-        }
-
         // Temp: 
         private static List<FighterMeleeWeapons> AvailableMeleeWeapons { get; set; }
         private static List<FighterRangedWeapons> AvailableRangedWeapons { get; set; }
@@ -64,9 +20,7 @@ namespace CIT255_KT_list_builder.Data
         {          
             AvailableMeleeWeapons = GenerateListOfMeleeWeapons();
             AvailableRangedWeapons = GenerateListOfRangedWeapons();
-            GenerateListOfWargear();
-            GenerateListOfAvailableFighters();
-            GenerateRoster();
+
         }
         #endregion
 

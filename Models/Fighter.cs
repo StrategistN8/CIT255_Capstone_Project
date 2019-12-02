@@ -31,6 +31,8 @@ namespace CIT255_KT_list_builder.Models
 
         private int _fighterID;
         private int _limit;
+        private int _fighterCost;
+        private int _totalCost;
 
         private string _fighterName;
         private string _fighterType;
@@ -59,6 +61,16 @@ namespace CIT255_KT_list_builder.Models
         {
             get { return _fighterID; }
             set { _fighterID = value; }
+        }
+        public int FighterCost
+        {
+            get { return _fighterCost; }
+            set { _fighterCost = value; }
+        }
+        public int TotalCost
+        {
+            get { return _totalCost; }
+            set { _totalCost = value; }
         }
         public string FighterName
         {
@@ -128,13 +140,32 @@ namespace CIT255_KT_list_builder.Models
 
         public Fighter()
         {
-
+            FighterEquipmentList = new List<FighterWargear>();
+            FighterRangedWeaponOptions = new List<FighterRangedWeapons>();
+            FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>();
         }
 
         #endregion
 
         #region METHODS
 
+        /// <summary>
+        /// Helper method that calculates the total cost of the fighter based on their equipped gear.
+        /// </summary>
+        /// <param name="fighter"></param>
+        /// <returns></returns>
+        public int CalculateTotalFighterCost(Fighter fighter)
+        {
+            fighter.TotalCost = fighter.FighterCost;
+
+            foreach (FighterWargear wargear in fighter.FighterEquipmentList)
+            {
+                fighter.TotalCost += wargear.ItemCost;
+            }
+
+            return fighter.TotalCost; 
+
+        }
         #endregion
 
     }
