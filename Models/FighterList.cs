@@ -10,7 +10,7 @@ namespace CIT255_KT_list_builder.Models
     {
         #region FIELDS       
         private string _listName;
-
+        private string _listFaction;
         private int _listID;
         private int _numberOfSpecialists;
         readonly int _maxNumberOfSpecialists = 4; // Game rules do not allow for more than 4 specialists in a list.
@@ -18,6 +18,10 @@ namespace CIT255_KT_list_builder.Models
         private int _maxPoints;
         private List<Fighter> _availableFighters;
         private List<Fighter> _selectedFighters;
+        
+
+       
+
         #endregion
 
         #region PROPERTIES
@@ -25,6 +29,11 @@ namespace CIT255_KT_list_builder.Models
         {
             get { return _listName; }
             set { _listName = value; }
+        }
+        public string ListFaction
+        {
+            get { return _listFaction; }
+            set { _listFaction = value; }
         }
         public int ListID
         {
