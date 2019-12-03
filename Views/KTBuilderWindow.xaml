@@ -9,17 +9,14 @@
     <!-- Resources -->
     <Window.Resources>
         <Style x:Key="PrimaryGridStyle" TargetType="Grid">
-            <Setter Property="Background" Value="DarkSlateGray"/>
+            <Setter Property="Background" Value="DimGray"/>
         </Style>
-        <Style x:Key="PrimaryDataGridStyle" TargetType="DataGrid">
+        <Style x:Key="PrimaryListBoxStyle" TargetType="ListBox">
             <Setter Property="Background" Value="CadetBlue"/>
             <Setter Property="Opacity" Value="0.7"/>
         </Style>
     </Window.Resources>
-    <!--<Window.DataContext>
-        <viewModels:KTViewModel.cs/>
-    </Window.DataContext>-->
-    
+        
     <!--Main Grid-->
     <Grid
         Style="{StaticResource PrimaryGridStyle}">
@@ -34,15 +31,81 @@
             </Grid.ColumnDefinitions>
 
             <!--List Display-->
-            <DataGrid
-                Grid.Row="0"
-                Grid.Column="0"
-                Style="{StaticResource PrimaryDataGridStyle}">
-            </DataGrid>
-
+            <ListBox 
+              Grid.Column="0"
+              Margin="10,10,10,10"
+              BorderThickness="0"
+              Background="DarkSlateGray"
+                    ItemsSource="{Binding _currentRoster.SelectedFighters}"
+                    SelectedItem="{Binding _currentFighter, Mode=TwoWay}"
+                    IsSynchronizedWithCurrentItem="true"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel
+                                Orientation="Horizontal">
+                            <Border Margin="5" BorderBrush="Black" BorderThickness="1">
+                                <Image 
+                                        Source="{Binding ImageFilePath}" 
+                                        Stretch="UniformToFill"  
+                                        Width="40" 
+                                        Height="40" />
+                            </Border>
+                            <StackPanel
+                                        Orientation="Vertical">
+                                <StackPanel
+                                            Orientation="Horizontal">
+                                    <Label
+                                                Content="{Binding FullName}"
+                                                Width="120"
+                                                />
+                                    <Label
+                                                Content="{Binding Age }"
+                                                Padding="0,5"
+                                                />
+                                    <Label
+                                                Content=" yrs"
+                                                Padding="0,5"
+                                                />
+                                </StackPanel>
+                                <StackPanel
+                                            Orientation="Horizontal">
+                                    <Button 
+                                                        x:Name="Button_View" 
+                                                        Width="40"
+                                                        Height="20"
+                                                        Margin="3"
+                                                        VerticalAlignment="Center"           
+                                                        FontSize="10"
+                                                        Content="View"
+                                                        Command="{Binding Path=DataContext.ViewCharacterCommand, ElementName=ListWindow}" />
+                                    <Button 
+                                                        x:Name="Button_Delete" 
+                                                        Width="40"
+                                                        Height="20"
+                                                        Margin="3"
+                                                        VerticalAlignment="Center"           
+                                                        FontSize="10"
+                                                        Content="Delete"
+                                                        Command="{Binding Path=DataContext.DeleteCharacterCommand, ElementName=ListWindow}" />
+                                    <Button 
+                                                        x:Name="Button_Edit" 
+                                                        Width="40"
+                                                        Height="20"
+                                                        Margin="3"
+                                                        VerticalAlignment="Center"           
+                                                        FontSize="10"
+                                                        Content="Edit"
+                                                        Command="{Binding Path=DataContext.EditCharacterCommand, ElementName=ListWindow}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <!-- Unit Data Display -->
-            <Label Content="{Binding}"/>
-            <Image Source="{Binding }"/>
+            <Label Content="{Binding DisplayFighter.Name}"/>
+            <Image Source="{Binding DisplayFighter.Image}"/>
             <ComboBox>
 
             </ComboBox>

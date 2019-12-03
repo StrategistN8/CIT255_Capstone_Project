@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CIT255_KT_list_builder.Models
 {
-    class FighterList 
+    public class FighterList 
     {
         #region FIELDS       
         private string _listName;

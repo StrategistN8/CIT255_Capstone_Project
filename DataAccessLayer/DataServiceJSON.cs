@@ -16,7 +16,7 @@ namespace CIT255_KT_list_builder.DataAccessLayer
     {
         public IEnumerable<Fighter> GetFighters()
         {
-            
+            return null;   
         }
 
         public void WriteAll(IEnumerable<Fighter> fighters)

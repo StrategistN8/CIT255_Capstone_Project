@@ -8,7 +8,7 @@ using CIT255_KT_list_builder.DataAccessLayer;
 
 namespace CIT255_KT_list_builder.BusinessLayer
 {
-    class KTBusiness 
+    public class KTBusiness 
     {
         #region ENUMS
 
@@ -43,15 +43,19 @@ namespace CIT255_KT_list_builder.BusinessLayer
             Fighter newFighter = null;
             //FileIoStatus = FileIoMessage.NONE;
 
-            try
-            {
-                using (FighterRepository fRepository = new FighterRepository())
-                {
+            //try
+            //{
+            //    using (FighterRepository fRepository = new FighterRepository())
+            //    {
 
-                }
-            }
+            //    }
+            //}
+            //catch
+            //{
 
+            //}
 
+            return null;
         }
 
 

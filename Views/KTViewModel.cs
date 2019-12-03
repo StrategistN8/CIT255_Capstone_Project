@@ -14,7 +14,7 @@ using CIT255_KT_list_builder.BusinessLayer;
 
 namespace CIT255_KT_list_builder
 {
-    class KTViewModel : ObservableObject 
+   public class KTViewModel : ObservableObject 
     {
         #region ENUMS
         private enum ActiveOperation

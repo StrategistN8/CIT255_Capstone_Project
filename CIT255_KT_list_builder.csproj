@@ -72,7 +72,7 @@
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Models\DataTypes.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="ViewModels\KTViewModel.cs" />
+    <Compile Include="Views\KTViewModel.cs" />
     <Compile Include="Views\KTBuilderWindow.xaml.cs">
       <DependentUpon>KTBuilderWindow.xaml</DependentUpon>
     </Compile>
