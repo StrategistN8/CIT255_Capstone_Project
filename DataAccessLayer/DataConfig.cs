@@ -16,7 +16,7 @@ namespace CIT255_KT_list_builder.DataAccessLayer
         public static DataType dataType = DataType.JSON;
         //public static DataType dataType = DataType.BSON;
         //public static DataType dataType = DataType.SQL;
-        public static string DataPathJson => @"DataAccessLayer\Data\DataJson\";
+        public static string DataPathJson => @"DataAccessLayer\JSON\";
         public static string DataPathXml => @"DataAccessLayer\Data\DataXml\";
         public static string ImagePath => @"\DataAccessLayer\Data\Image\";
 

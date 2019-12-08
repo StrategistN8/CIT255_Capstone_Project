@@ -9,8 +9,11 @@ namespace CIT255_KT_list_builder.DataAccessLayer
 {
     interface IDataService
     {
-        IEnumerable<Fighter> GetFighters();
-        void WriteAll(IEnumerable<Fighter> fighters);
+        // Retrieve all data:
+        IEnumerable<FighterList> ReadAll();
+        
+        //Write all data: 
+        void WriteAll(IEnumerable<FighterList> roster);
 
 
     }

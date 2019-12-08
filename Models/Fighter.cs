@@ -29,20 +29,24 @@ namespace CIT255_KT_list_builder.Models
 
         #region FIELDS
 
+        // Int variables:
         private int _fighterID;
         private int _limit;
         private int _fighterCost;
         private int _totalCost;
 
+        // String variables
         private string _fighterName;
         private string _fighterType;
         private string _fighterFaction;
         private string _imgFile;
+        private string _imgSource;      
 
+        // Bool variables
         private bool _isSpecialist;
         private bool _isLimited;
-              
 
+        // Misc. 
         private Specializations _fighterSpecialization; // Default to NONE for most fighters
         private List<FighterWargear> _fighterEquipmentList; // This will list all the items equipped to the fighter.
         private List<FighterMeleeWeapons> _fighterMeleeWeaponsOptions; 
@@ -91,6 +95,11 @@ namespace CIT255_KT_list_builder.Models
         {
             get { return _imgFile; }
             set { _imgFile = value; }
+        }
+        public string ImgSource
+        {
+            get { return _imgSource; }
+            set { _imgSource = value; }
         }
         public bool IsSpecialist
         {

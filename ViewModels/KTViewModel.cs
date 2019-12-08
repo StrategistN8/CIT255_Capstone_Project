@@ -12,7 +12,7 @@ using CIT255_KT_list_builder;
 using CIT255_KT_list_builder.BusinessLayer;
 
 
-namespace CIT255_KT_list_builder
+namespace CIT255_KT_list_builder.ViewModels
 {
    public class KTViewModel : ObservableObject 
     {
@@ -123,6 +123,7 @@ namespace CIT255_KT_list_builder
             // Add Icommand to call each related method.
 
         }
+       
         #endregion
 
         #region METHODS
@@ -132,10 +133,11 @@ namespace CIT255_KT_list_builder
         /// </summary>
         private void UpdateImagePath()
         {
-            //foreach (var character in _characters)
-            //{
-            //    character.ImageFilePath = DataConfig.ImagePath + character.ImageFileName;
-            //}
+            foreach (Fighter fighter in CurrentRoster.SelectedFighters)
+            {
+                fighter.ImageFilePath = DataConfig.ImagePath + character.ImageFileName;
+            }
+
         }
 
         /// <summary>

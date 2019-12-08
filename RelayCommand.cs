@@ -9,30 +9,52 @@ namespace CIT255_KT_list_builder
 {
     class RelayCommand : ICommand
     {
-        private Action<object> _action;
 
-        public RelayCommand(Action<object> action)
+        #region FIELDS
+        private Action _action;
+        private Action<object> _actionP1;
+        #endregion
+
+        #region PROPERTIES
+        public RelayCommand(Action action)
         {
             _action = action;
         }
+        public RelayCommand(Action<object> action)
+
+        {
+            _actionP1 = action;
+        }
+
+        #endregion
 
         #region ICommand Members
-
         public bool CanExecute(object parameter)
         {
             return true;
         }
-
+        
         public event EventHandler CanExecuteChanged;
 
         public void Execute(object parameter)
+
         {
             if (parameter != null)
             {
-                _action(parameter);
+                _actionP1(parameter);
             }
+
+            else
+            {
+                _action();
+            }
+
         }
 
+
+
         #endregion
+
     }
+
 }

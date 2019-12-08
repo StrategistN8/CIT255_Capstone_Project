@@ -14,14 +14,40 @@ namespace CIT255_KT_list_builder.DataAccessLayer
 {
     class DataServiceJSON : IDataService
     {
-        public IEnumerable<Fighter> GetFighters()
+        /// <summary>
+        /// Reads all data from a JSON file and loads the rosters.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<FighterList> GetAll()
         {
-            return null;   
+            List<FighterList> rosters;
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(DataConfig.DataPathJson))
+                {
+                    string jSONString = sr.ReadToEnd();
+
+                    rosters = JsonConvert.DeserializeObject<List<FighterList>>(jSONString);
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+            return rosters;
         }
 
-        public void WriteAll(IEnumerable<Fighter> fighters)
+        /// <summary>
+        /// Writes current data to the JSON data file.
+        /// </summary>
+        /// <param name="roster"></param>
+        public void WriteAll(IEnumerable<FighterList> roster)
         {
-            
+            string jSONString = JsonConvert.SerializeObject(roster, Formatting.Indented);
+
         }
     }
 }

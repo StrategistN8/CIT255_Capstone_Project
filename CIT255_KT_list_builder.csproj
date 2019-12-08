@@ -63,16 +63,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BusinessLayer\KTBusiness.cs" />
-    <Compile Include="BusinessLayer\FighterRepository.cs" />
+    <Compile Include="BusinessLayer\IFighterRepository.cs" />
     <Compile Include="BusinessLayer\IRepository.cs" />
     <Compile Include="DataAccessLayer\DataConfig.cs" />
     <Compile Include="DataAccessLayer\DataServiceJSON.cs" />
     <Compile Include="DataAccessLayer\Data\SeedData.cs" />
     <Compile Include="DataAccessLayer\IDataService.cs" />
+    <Compile Include="BusinessLayer\TeamRosterRepository.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Models\DataTypes.cs" />
+    <Compile Include="Models\FileIoMessage.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="Views\KTViewModel.cs" />
+    <Compile Include="ViewModels\KTViewModel.cs" />
     <Compile Include="Views\KTBuilderWindow.xaml.cs">
       <DependentUpon>KTBuilderWindow.xaml</DependentUpon>
     </Compile>
@@ -114,7 +116,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Views\Backgrounds\KTLB_BG1.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="DataAccessLayer\Data\Image\Aberrant.PNG" />
     <Resource Include="DataAccessLayer\Data\Image\Aberrant2.PNG" />
@@ -132,6 +136,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Backgrounds\KTLB_BG2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Backgrounds\KTLB_BG1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Backgrounds\KTLB_BG02.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
