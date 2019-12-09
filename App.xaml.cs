@@ -8,6 +8,7 @@ using System.Windows;
 using CIT255_KT_list_builder.Models;
 using CIT255_KT_list_builder.BusinessLayer;
 using CIT255_KT_list_builder.Views;
+using CIT255_KT_list_builder.ViewModels;
 
 namespace CIT255_KT_list_builder
 {

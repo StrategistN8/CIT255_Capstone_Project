@@ -83,27 +83,36 @@
             <!--List Display-->
             <Border
                 Style="{StaticResource PrimaryBorderStyle}">
-            
-           <!--- Display Stackpanel -->
+                            
+                <!--- Display Stackpanel -->
                 <StackPanel
                  Grid.Column="0">
+                    <!-- Title Lable -->
+                    <Label
+                        Content="Kill Team Roster Builder (unofficial)"
+                        Style="{StaticResource PrimaryLabelStyle}"
+                        FontWeight="Bold"
+                        FontSize="45"/>
                     <StackPanel
                         Orientation="Horizontal">
                         <Label
                             Content="Current Roster: "
                             Style="{StaticResource PrimaryLabelStyle}"
                             Margin="10,0,0,0"/>
-                        <Label 
-                            Content="{Binding currentRoster.Name}"
-                            Style="{StaticResource PrimaryLabelStyle}"
-                            Margin="0,0,10,0"/>
+                        <ComboBox 
+                            SelectedItem="{Binding CurrentRoster}"
+                            ItemsSource="{Binding AvailableRosters}"
+                            Style="{StaticResource PrimaryComboBoxStyle}"
+                            Width="350"
+                            Height="30"/>
                     </StackPanel>
-
+           
+          <!-- Fighter Display-->
                     <ListBox 
                         Margin="10,10,10,10"
                         BorderThickness="0"
-                        ItemsSource="{Binding _currentRoster.SelectedFighters}"
-                        SelectedItem="{Binding _currentFighter, Mode=TwoWay}"
+                        ItemsSource="{Binding CurrentRoster.SelectedFighters}"
+                        SelectedItem="{Binding CurrentFighter, Mode=TwoWay}"
                         IsSynchronizedWithCurrentItem="true"
                         ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListBox.ItemTemplate>
@@ -112,7 +121,7 @@
                                     Orientation="Horizontal">
                                       <Border Margin="5" BorderBrush="Black" BorderThickness="1">
                                         <Image 
-                                            Source="{Binding ImageFilePath}" 
+                                            Source="\DataAccessLayer\Data\Image\AcolyteHybrid.PNG"
                                             Stretch="UniformToFill"  
                                             Width="40" 
                                             Height="40" />
@@ -122,13 +131,13 @@
                                         <StackPanel
                                             Orientation="Horizontal">
                                             <Label
-                                                Content="{Binding FullName}"
+                                                Content="{Binding CurrentRoster.SelectedFighter.FighterName}"
                                                 Width="120"/>
                                             <Label
-                                                Content="{Binding Age }"
+                                                Content="{Binding CurrentRoster.SelectedFighter.FighterType }"
                                                 Padding="0,5"/>
                                             <Label
-                                                Content=" yrs"
+                                                Content="{Binding CurrentRoster.SelectedFighter.TotalCost}"
                                                 Padding="0,5"/>
                                         </StackPanel>
                                         <StackPanel
@@ -166,6 +175,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+          
                 </StackPanel>
             </Border>
 
@@ -178,8 +188,9 @@
                     Style="{StaticResource PrimaryBorderStyle}"
                     Margin="10"
                     MaxWidth="200">
+                    
                     <Image 
-                    Source="..\DataAccessLayer\Data\Image\AcolyteLeader.PNG"
+                    Source="{Binding CurrentFighterImageSource}"
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     MaxWidth="200"/>
@@ -195,8 +206,13 @@
                 <TextBox
                         Grid.Column="1"
                         Grid.Row="0"
-                        Text="Enter Name Here"
-                        Style="{StaticResource PrimaryTextBoxStyle}"/>
+                        Text="{Binding CurrentFighter.FighterName}"
+                        Style="{StaticResource PrimaryTextBoxStyle}"
+                        Width="500"
+                        Height="25"
+                        HorizontalAlignment="Left"
+                        Margin="8,0,0,0"
+                        Padding="1"/>
 
                 <!--Type Box-->
                 <Label 
@@ -208,8 +224,13 @@
                 <TextBox
                         Grid.Column="1"
                         Grid.Row="1"
-                        Text="Enter Name Here"
-                        Style="{StaticResource PrimaryTextBoxStyle}"/>
+                        Text="{Binding CurrentFighter.FighterType}"
+                        Style="{StaticResource PrimaryTextBoxStyle}"
+                        Width="500"
+                        Height="25"
+                        HorizontalAlignment="Left"
+                        Margin="8,0,0,0"
+                        Padding="1"/>
 
                 <!-- Specialization Box -->
                 <Label 
@@ -219,9 +240,14 @@
                         HorizontalAlignment="Left"
                         />
                 <ComboBox
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    Style="{StaticResource PrimaryComboBoxStyle}"/>
+                    ItemsSource="{Binding CurrentFighter.FighterSpecializationOptions}"
+                    SelectedItem="{Binding CurrentFighter.FighterSpecialization}"
+                    Style="{StaticResource PrimaryComboBoxStyle}"
+                    Width="500"
+                    Height="25"
+                    HorizontalAlignment="Left"
+                    Margin="8,0,0,0"
+                    Padding="1"/>
 
                 <!-- Equipment Box -->
                 <Label 

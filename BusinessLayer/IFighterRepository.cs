@@ -9,7 +9,7 @@ namespace CIT255_KT_list_builder.DataAccessLayer
 {
     interface FighterRepository : IRepository
     {
-        IEnumerable<FighterList> GetAll();
+        IEnumerable<FighterList> ReadAll();
         FighterList GetById(int id);
         void Add(FighterList roster);
         void Update(FighterList roster);

@@ -17,7 +17,7 @@ namespace CIT255_KT_list_builder.Data
 
         #region CONSTRUCTOR
         public SeedData()
-        {          
+        {
             AvailableMeleeWeapons = GenerateListOfMeleeWeapons();
             AvailableRangedWeapons = GenerateListOfRangedWeapons();
 
@@ -30,26 +30,291 @@ namespace CIT255_KT_list_builder.Data
         /// Creates a FighterList object to conduct test operations on;
         /// </summary>
         /// <returns></returns>
-        public static FighterList GenerateRoster()
+        public static IEnumerable<FighterList> GenerateRoster()
         {
-            FighterList seedList = new FighterList()
+            List<FighterList> seedList = new List<FighterList>()
             {
-                ListName = "Sample List",
-                ListID = 0,
+                new FighterList()
+                {
+                    ListName = "Sample List",
+                    ListID = 0,
+                    NumberOfSpecialists = 0,
+                    MaxPoints = 100,
+                    SelectedFighters = new List<Fighter>()
+                    {
+
+                    new Fighter()
+                    {
+                        FighterID = 0,
+                        FighterType = "Acolyte Leader",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "AcolyteLeader.PNG",
+                        IsSpecialist = true,
+                        FighterSpecialization =  Fighter.Specializations.LEADER,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 1,
+                        FighterType = "Acolyte Fighter",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "AcolyteFighter.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 2,
+                        FighterType = "Acolyte Hybrid",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "AcolyteHybrid.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 3,
+                        FighterType = "Metamorph",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "MetamorphHybrid.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 4,
+                        FighterType = "Aberrant",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "Aberrant2.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                }
+                },
+                new FighterList()
+            {
+                ListName = "Mining Corps",
+                ListID = 1,
                 NumberOfSpecialists = 0,
                 MaxPoints = 100,
                 SelectedFighters = new List<Fighter>()
                 {
 
+                    new Fighter()
+                    {
+                        FighterID = 6,
+                        FighterType = "Neophyte Leader",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "NeophyteLeader.PNG",
+                        IsSpecialist = true,
+                        FighterSpecialization =  Fighter.Specializations.LEADER,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
 
 
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 7,
+                        FighterType = "Neophyte Hybrid",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "NeophyteHybrid.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 8,
+                        FighterType = "Neophyte Hybrid",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "NeophyteHybrid.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 9,
+                        FighterType = "Neophyte Gunner",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "NeophyteGunner.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 10,
+                        FighterType = "Metamorph",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "MetamorphHybrid.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
+                    new Fighter()
+                    {
+                        FighterID = 11,
+                        FighterType = "Aberrant",
+                        FighterFaction = "Genestealer Cults",
+                        ImgFile = "Aberrant2.PNG",
+                        IsSpecialist = false,
+                        FighterSpecialization =  Fighter.Specializations.NONE,
+                        FighterEquipmentList = new List<FighterWargear>
+                        {
+
+
+                        },
+                        FighterSpecializationOptions = new List<Fighter.Specializations>
+                        {
+                         Fighter.Specializations.NONE,
+                         Fighter.Specializations.LEADER,
+                         Fighter.Specializations.COMBAT,
+                         Fighter.Specializations.COMMS,
+                         Fighter.Specializations.ZEALOT
+
+                        }
+                    },
                 }
-       
+            },
             };
+            
 
             return seedList;
         }
-        
+
         /// <summary>
         /// Generates a list of available fighters:
         /// </summary>
@@ -101,7 +366,7 @@ namespace CIT255_KT_list_builder.Data
             };
 
 
-            return fighters; 
+            return fighters;
 
 
         }
@@ -173,7 +438,7 @@ namespace CIT255_KT_list_builder.Data
 
             return weapons;
         }
-        
+
         #endregion
 
         #region  HELPER METHODS

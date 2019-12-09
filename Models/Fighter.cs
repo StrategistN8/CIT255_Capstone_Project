@@ -149,9 +149,7 @@ namespace CIT255_KT_list_builder.Models
 
         public Fighter()
         {
-            FighterEquipmentList = new List<FighterWargear>();
-            FighterRangedWeaponOptions = new List<FighterRangedWeapons>();
-            FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>();
+            
         }
 
         #endregion

@@ -13,7 +13,6 @@ namespace CIT255_KT_list_builder.Models
         private string _listFaction;
         private int _listID;
         private int _numberOfSpecialists;
-        readonly int _maxNumberOfSpecialists = 4; // Game rules do not allow for more than 4 specialists in a list.
         private int _currentPoints;
         private int _maxPoints;
         private List<Fighter> _availableFighters;

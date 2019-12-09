@@ -10,6 +10,8 @@ using System.Windows.Input;
 using CIT255_KT_list_builder.Models;
 using CIT255_KT_list_builder;
 using CIT255_KT_list_builder.BusinessLayer;
+using CIT255_KT_list_builder.DataAccessLayer;
+using CIT255_KT_list_builder.Data;
 
 
 namespace CIT255_KT_list_builder.ViewModels
@@ -33,51 +35,126 @@ namespace CIT255_KT_list_builder.ViewModels
         private Fighter _currentFighter;
         private Fighter _displayFighter;
         private FighterWargear _selectedWargear;
+        
         private ObservableCollection<FighterList> _availableRosters;
-        private ObservableCollection<Fighter> _availableFighters;
-        private ObservableCollection<FighterWargear> _availableWargear;
+        private ObservableCollection<String> _availableRostersName;      
+        private ObservableCollection<Fighter> _fighters;
+        private ObservableCollection<FighterWargear> _fighterWargear;
+
+        private bool _isEditing;
+        private bool _showButton;       
+
         private KTBusiness _ktBusiness;
-        private ActiveOperation _currentOperation;    
+        private ActiveOperation _currentOperation;
+        private string _currentFighterImageSource;
+             
         #endregion
 
         #region PROPERTIES
         public FighterList CurrentRoster
         {
             get { return _currentRoster; }
-            set { _currentRoster = value; }
+            set
+            {
+                _currentRoster = value;
+                OnPropertyChanged(nameof(CurrentRoster));
+            }
         }
         public Fighter CurrentFighter
         {
             get { return _currentFighter; }
-            set { _currentFighter = value; }
+            set
+            {
+                if (_currentFighter == value)
+                {
+                    return;
+                }
+                _currentFighter = value;
+                OnPropertyChanged(nameof(CurrentFighter));
+            }
         }
         public Fighter DisplayFighter
         {
             get { return _displayFighter; }
-            set { _displayFighter = value; }
+            set
+            {
+                if (_displayFighter == value)
+                {
+                    return;
+                }
+                _displayFighter = value;
+                OnPropertyChanged(nameof(DisplayFighter));
+            }
         }
         public FighterWargear SelectedWargear
         {
             get { return _selectedWargear; }
-            set { _selectedWargear = value; }
+            set
+            {   if (_selectedWargear == value)
+                {
+                    return;
+                }
+                _selectedWargear = value;
+                OnPropertyChanged(nameof(SelectedWargear));
+            }
         }
         public ObservableCollection<FighterList> AvailableRosters
         {
             get { return _availableRosters; }
-            set { _availableRosters = value; }
+            set
+            {
+                _availableRosters = value;
+                OnPropertyChanged(nameof(AvailableRosters));
+            }
         }
-        public ObservableCollection<Fighter> AvailableFighters
+        public ObservableCollection<String> AvailableRostersName
         {
-            get { return _availableFighters; }
-            set { _availableFighters = value; }
+            get { return _availableRostersName; }
+            set
+            {
+                _availableRostersName = value;
+                OnPropertyChanged(nameof(AvailableRostersName));
+
+            }
         }
-        public ObservableCollection<FighterWargear> AvailableWargear
+        public ObservableCollection<Fighter> Fighters
         {
-            get { return _availableWargear; }
-            set { _availableWargear = value; }
+            get { return _fighters; }
+            set
+            {
+                _fighters = value;
+                OnPropertyChanged(nameof(Fighters));
+            }
         }
-        public bool IsEditing { get; set; }
-        public bool ShowNewButton { get; set; }
+        public ObservableCollection<FighterWargear> FighterWargear
+        {
+            get { return _fighterWargear; }
+            set
+            {
+                _fighterWargear = value;
+                OnPropertyChanged(nameof(FighterWargear));
+            }
+        }
+
+        public bool IsEditing
+        {
+            get { return _isEditing; }
+            set
+            {
+                _isEditing = value;
+                OnPropertyChanged(nameof(IsEditing));
+            }
+        }
+        public bool ShowButton
+        {
+            get { return _showButton; }
+            set
+            {
+                _showButton = value;
+                OnPropertyChanged(nameof(ShowButton));
+            }
+        }
+
         public KTBusiness KtBusiness
         {
             get { return _ktBusiness; }
@@ -88,6 +165,16 @@ namespace CIT255_KT_list_builder.ViewModels
             get { return _currentOperation; }
             set { _currentOperation = value; }
         }
+        public string CurrentFighterImageSource
+        {
+            get { return _currentFighterImageSource; }
+            set
+            {
+                _currentFighterImageSource = _currentFighter.ImgSource;
+                OnPropertyChanged(nameof(CurrentFighterImageSource));
+            }
+        }
+
         #endregion
 
         #region COMMANDS
@@ -113,11 +200,12 @@ namespace CIT255_KT_list_builder.ViewModels
         /// Default Constructor: 
         /// </summary>
         public KTViewModel(KTBusiness kTBusiness)
-        {
+        {          
             _ktBusiness = kTBusiness;
-            _availableRosters = new ObservableCollection<FighterList>();
-            _availableFighters = new ObservableCollection<Fighter>();
-            _availableWargear = new ObservableCollection<FighterWargear>();
+            _availableRosters = new ObservableCollection<FighterList>(SeedData.GenerateRoster());
+            _currentRoster = _availableRosters.FirstOrDefault(r => r.ListID > 0);
+            _currentFighter = _currentRoster.SelectedFighters.FirstOrDefault( f => f.FighterID > 0);
+                   
             UpdateImagePath();
 
             // Add Icommand to call each related method.
@@ -128,17 +216,17 @@ namespace CIT255_KT_list_builder.ViewModels
 
         #region METHODS
 
-        /// <summary>
-        /// Helper method that sources the image for the view:
-        /// </summary>
-        private void UpdateImagePath()
-        {
-            foreach (Fighter fighter in CurrentRoster.SelectedFighters)
-            {
-                fighter.ImageFilePath = DataConfig.ImagePath + character.ImageFileName;
-            }
+     
 
-        }
+        #endregion
+
+        #region ROSTER METHODS
+
+
+
+        #endregion
+
+        #region FIGHTER METHODS
 
         /// <summary>
         /// Removes a fighter from the current roster. 
@@ -151,10 +239,10 @@ namespace CIT255_KT_list_builder.ViewModels
 
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
-                    //_ktBusiness.Delete()
+                    CurrentRoster.SelectedFighters.Remove(CurrentRoster.SelectedFighters.FirstOrDefault(c => c.FighterID == _currentFighter.FighterID));
 
-                    //todo: make sure this works:
-                    _currentRoster.SelectedFighters.Remove(CurrentFighter);
+                    _ktBusiness.UpdateRoster(CurrentRoster);
+                    
                 }
             }
         }
@@ -166,9 +254,9 @@ namespace CIT255_KT_list_builder.ViewModels
         {
             if (_currentFighter != null && _currentRoster != null)
             {
-                //_operationStatus = ActiveOperation.EDIT;
+                _currentOperation = ActiveOperation.UPDATE;
                 IsEditing = true;
-                ShowNewButton = false;
+                ShowButton = false;
                 // Method to update the temp character to persistance.
             }
         }
@@ -193,7 +281,7 @@ namespace CIT255_KT_list_builder.ViewModels
         {
             //ResetTempFighter
             IsEditing = true;
-            ShowNewButton = false;
+            ShowButton = false;
             //OperationStatus = ActiveOperation.ADD;
         }
 
@@ -232,7 +320,7 @@ namespace CIT255_KT_list_builder.ViewModels
 
             // Method to reset the temp character.
             IsEditing = false;
-            ShowNewButton = true;
+            ShowButton = true;
             CurrentOperation = ActiveOperation.NONE;
         }
         
@@ -244,7 +332,7 @@ namespace CIT255_KT_list_builder.ViewModels
             //Method to reset temp character.
             _currentOperation = ActiveOperation.NONE;
             IsEditing = false;
-            ShowNewButton = true;
+            ShowButton = true;
         }
         
         /// <summary>
@@ -276,6 +364,32 @@ namespace CIT255_KT_list_builder.ViewModels
             _displayFighter.FighterType = "";
             _displayFighter.FighterSpecialization = Fighter.Specializations.NONE;
             _displayFighter.ImgFile = "";
+
+        }
+        #endregion
+
+        #region HELPER METHODS
+        
+        /// <summary>
+        /// Helper method that sources the image for the view:
+        /// </summary>
+        private void UpdateImagePath()
+        {
+            foreach (Fighter fighter in CurrentRoster.SelectedFighters)
+            {
+                fighter.ImgSource = DataConfig.ImagePath + fighter.ImgFile;
+            }
+        }
+
+        /// <summary>
+        /// Helper method that populates the fighter list.
+        /// </summary>
+        private void PopulateFighterList()
+        {
+            foreach (Fighter fighter in CurrentRoster.SelectedFighters)
+            {
+                _fighters.Add(fighter);
+            }
 
         }
 

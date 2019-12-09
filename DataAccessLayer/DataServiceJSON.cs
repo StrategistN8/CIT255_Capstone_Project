@@ -14,29 +14,56 @@ namespace CIT255_KT_list_builder.DataAccessLayer
 {
     class DataServiceJSON : IDataService
     {
+
+        #region FIELDS
+
+        private string _dataPath;
+        #endregion
+
+        #region PROPERTIES
+        public string DataPath
+        {
+            get { return _dataPath; }
+            set { _dataPath = value; }
+        }
+
+        #endregion
+
+        #region CONSTRUCTOR
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public DataServiceJSON()
+        {
+            DataPath = DataConfig.DataPathJson;
+        }
+
+        #endregion
+
+        #region METHODS
+
         /// <summary>
         /// Reads all data from a JSON file and loads the rosters.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<FighterList> GetAll()
+        public IEnumerable<FighterList> ReadAll()
         {
             List<FighterList> rosters;
 
             try
             {
-                using (StreamReader sr = new StreamReader(DataConfig.DataPathJson))
+                using (StreamReader streamReader = new StreamReader(DataPath))
                 {
-                    string jSONString = sr.ReadToEnd();
+                    string jsonString = streamReader.ReadToEnd();
+                    rosters = JsonConvert.DeserializeObject<List<FighterList>>(jsonString);
+                };
 
-                    rosters = JsonConvert.DeserializeObject<List<FighterList>>(jSONString);
-                }
             }
             catch (System.Exception)
             {
-
                 throw;
             }
-
             return rosters;
         }
 
@@ -49,5 +76,6 @@ namespace CIT255_KT_list_builder.DataAccessLayer
             string jSONString = JsonConvert.SerializeObject(roster, Formatting.Indented);
 
         }
+        #endregion
     }
 }

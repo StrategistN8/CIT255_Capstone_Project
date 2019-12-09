@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CIT255_KT_list_builder.Models;
 using CIT255_KT_list_builder.DataAccessLayer;
+using CIT255_KT_list_builder.Data;
 
 namespace CIT255_KT_list_builder.BusinessLayer
 {
@@ -15,8 +16,6 @@ namespace CIT255_KT_list_builder.BusinessLayer
         #endregion
 
         #region FIELDS
-
-
 
         #endregion
 
@@ -32,7 +31,7 @@ namespace CIT255_KT_list_builder.BusinessLayer
         /// </summary>
         public KTBusiness()
         {
-
+            
         }
         #endregion
 
