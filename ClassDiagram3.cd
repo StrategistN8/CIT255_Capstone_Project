@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CIT255_KT_list_builder.ViewModels.KTViewModel">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="CIT255_KT_list_builder.ViewModels.KTViewModel.ActiveOperation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\KTViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>mEAMSAAQ4gqBAAQegAMNGADUAgAJgABCAQQAQmAAyAA=</HashCode>
+      <FileName>ViewModels\KTViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.DataAccessLayer.TeamRosterRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAIAAACAAEAAAAEIEACAAAAEAAEAAAgAAgAAAAAA=</HashCode>
+      <FileName>BusinessLayer\TeamRosterRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CIT255_KT_list_builder.BusinessLayer.KTBusiness">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIIAAAAAAAAEAIAAcAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>BusinessLayer\KTBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.DataAccessLayer.DataConfig">
+    <Position X="4.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAQAAAAIAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccessLayer\DataConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.DataAccessLayer.DataServiceJSON" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAEAAAAAEAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>DataAccessLayer\DataServiceJSON.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CIT255_KT_list_builder.DataAccessLayer.DataServiceMongo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAEAAEEAGAAAAAAEAAAAIAgAAgAAAAII=</HashCode>
+      <FileName>DataAccessLayer\DataServiceMongo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.Fighter">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="CIT255_KT_list_builder.Models.Fighter.Specializations" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Fighter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAggCBQACBAgAkUwBFlAAJAAAAADCDAhAACAA=</HashCode>
+      <FileName>Models\Fighter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterList">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAEAEAAgKEAAAQAAAEQAAIgAQAQAA=</HashCode>
+      <FileName>Models\FighterList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterMeleeWeapons" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FighterMeleeWeapons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterRangedWeapons" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FighterRangedWeapons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CIT255_KT_list_builder.Models.FighterWargear">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAABAAAAAgAAQAAEAAAACAAAAAAABAAAAQAA=</HashCode>
+      <FileName>Models\FighterWargear.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CIT255_KT_list_builder.DataAccessLayer.IRepository">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAEAAAAAAEAAAAAAgAAgAAAAAA=</HashCode>
+      <FileName>BusinessLayer\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CIT255_KT_list_builder.DataAccessLayer.IDataService" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>DataAccessLayer\IDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CIT255_KT_list_builder.Models.DataType">
+    <Position X="11.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAACCAgAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CIT255_KT_list_builder.Models.FileIoMessage">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABIAAEAAAAAABAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\FileIoMessage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -32,6 +32,7 @@ namespace CIT255_KT_list_builder.BusinessLayer
         public KTBusiness()
         {
             
+
         }
         #endregion
 
@@ -44,7 +45,7 @@ namespace CIT255_KT_list_builder.BusinessLayer
         /// <returns></returns>
         private List<FighterList> GetAllRosters()
         {
-            List<FighterList> tempRoster = null;
+            List<FighterList> tempRoster = new List<FighterList>();
             FileIoStatus = FileIoMessage.None;
 
             try

@@ -12,9 +12,10 @@ using CIT255_KT_list_builder;
 using CIT255_KT_list_builder.BusinessLayer;
 using CIT255_KT_list_builder.DataAccessLayer;
 using CIT255_KT_list_builder.Data;
+using CIT255_KT_list_builder.Commands;
 
 
-namespace CIT255_KT_list_builder.ViewModels
+namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
 {
    public class KTViewModel : ObservableObject 
     {
@@ -29,8 +30,10 @@ namespace CIT255_KT_list_builder.ViewModels
 
         }
         #endregion
-        
+
         #region FIELDS
+        private KTBusiness _ktBusiness;
+        private ActiveOperation _currentOperation;
         private FighterList _currentRoster;
         private Fighter _currentFighter;
         private Fighter _displayFighter;
@@ -44,13 +47,25 @@ namespace CIT255_KT_list_builder.ViewModels
         private bool _isEditing;
         private bool _showButton;       
 
-        private KTBusiness _ktBusiness;
-        private ActiveOperation _currentOperation;
         private string _currentFighterImageSource;
-             
+        private string _selectedRosterName;
+
+      
+
+
         #endregion
 
         #region PROPERTIES
+        public KTBusiness KtBusiness
+        {
+            get { return _ktBusiness; }
+            set { _ktBusiness = value; }
+        }
+        private ActiveOperation CurrentOperation
+        {
+            get { return _currentOperation; }
+            set { _currentOperation = value; }
+        }
         public FighterList CurrentRoster
         {
             get { return _currentRoster; }
@@ -98,6 +113,7 @@ namespace CIT255_KT_list_builder.ViewModels
                 OnPropertyChanged(nameof(SelectedWargear));
             }
         }
+
         public ObservableCollection<FighterList> AvailableRosters
         {
             get { return _availableRosters; }
@@ -155,16 +171,6 @@ namespace CIT255_KT_list_builder.ViewModels
             }
         }
 
-        public KTBusiness KtBusiness
-        {
-            get { return _ktBusiness; }
-            set { _ktBusiness = value; }
-        }
-        private ActiveOperation CurrentOperation
-        {
-            get { return _currentOperation; }
-            set { _currentOperation = value; }
-        }
         public string CurrentFighterImageSource
         {
             get { return _currentFighterImageSource; }
@@ -174,24 +180,29 @@ namespace CIT255_KT_list_builder.ViewModels
                 OnPropertyChanged(nameof(CurrentFighterImageSource));
             }
         }
+        public string SelectedRosterName
+        {
+            get { return _selectedRosterName; }
+            set
+            {
+                _selectedRosterName = value;
+                SetCurrentRosterByName();
+            }
+        }
 
         #endregion
 
         #region COMMANDS
-        // List Editing Commands:
-        public ICommand SelectList { get; set; }
-        public ICommand CreateNewList { get; set; }
-        public ICommand DeleteList { get; set; }
-        public ICommand SelectFighterFromList { get; set; }
-        public ICommand CancelDeleteList { get; set; }
-        public ICommand CancelCreateList { get; set; }
 
-        // Fighter Editing Commands:
-        public ICommand EditSelectedFighter { get; set; }
-        public ICommand DeleteSelectedFighter { get; set; }
-        public ICommand AddNewFighterToList { get; set; }
-        public ICommand CancelDeleteFighter { get; set; }
-        public ICommand CancelEditOrAddFighter { get; set; }
+        public ICommand DeleteFighterFromRosterCommand
+        {
+            get { return new RelayCommand(new Action(DeleteFighter)); }
+        }
+        
+        //public ICommand CreateNewRosterCommand
+        //{
+        //    get { return new RelayCommand(new Action())};
+        //}
         #endregion
 
         #region CONSTRUCTOR
@@ -200,16 +211,23 @@ namespace CIT255_KT_list_builder.ViewModels
         /// Default Constructor: 
         /// </summary>
         public KTViewModel(KTBusiness kTBusiness)
-        {          
+        {   
+            // Initialize business logic:
             _ktBusiness = kTBusiness;
+            
+            //Initialize collections:
             _availableRosters = new ObservableCollection<FighterList>(SeedData.GenerateRoster());
-            _currentRoster = _availableRosters.FirstOrDefault(r => r.ListID > 0);
-            _currentFighter = _currentRoster.SelectedFighters.FirstOrDefault( f => f.FighterID > 0);
-                   
+            //  _availableRosters = new ObservableCollection<FighterList>(kTBusiness.AllRosters());
+            _availableRostersName = new ObservableCollection<string>();
+
+            // Misc.
+            CreateRosterSelectList();
             UpdateImagePath();
-
-            // Add Icommand to call each related method.
-
+            _currentRoster = _availableRosters.FirstOrDefault(r => r.ListID > 0);
+            _selectedRosterName = _currentRoster.ListName;
+            _currentFighter = _currentRoster.SelectedFighters.FirstOrDefault( f => f.FighterID > 0);
+            
+                   
         }
        
         #endregion
@@ -222,7 +240,26 @@ namespace CIT255_KT_list_builder.ViewModels
 
         #region ROSTER METHODS
 
+        /// <summary>
+        /// Helper method that creates a list of names for the view to consume.
+        /// </summary>
+        private void CreateRosterSelectList()
+        {
+            foreach (FighterList roster in AvailableRosters)
+            {
+                AvailableRostersName.Add(roster.ListName);
+            }
+        }
 
+        /// <summary>
+        /// Creates an empty roster for the user.
+        /// </summary>
+        private void CreateNewRoster ()
+        {
+           FighterList newList = new FighterList();
+            AvailableRosters.Add(newList);
+
+        }
 
         #endregion
 
@@ -241,7 +278,7 @@ namespace CIT255_KT_list_builder.ViewModels
                 {
                     CurrentRoster.SelectedFighters.Remove(CurrentRoster.SelectedFighters.FirstOrDefault(c => c.FighterID == _currentFighter.FighterID));
 
-                    _ktBusiness.UpdateRoster(CurrentRoster);
+                    //_ktBusiness.UpdateRoster(CurrentRoster);
                     
                 }
             }
@@ -375,22 +412,23 @@ namespace CIT255_KT_list_builder.ViewModels
         /// </summary>
         private void UpdateImagePath()
         {
-            foreach (Fighter fighter in CurrentRoster.SelectedFighters)
+            foreach (FighterList roster in AvailableRosters)
             {
-                fighter.ImgSource = DataConfig.ImagePath + fighter.ImgFile;
+                foreach (Fighter fighter in roster.SelectedFighters)
+                {
+                    fighter.ImgSource = DataConfig.ImagePath.ToString() + fighter.ImgFile.ToString();
+                }
             }
+
+           
         }
 
         /// <summary>
-        /// Helper method that populates the fighter list.
+        /// Helper method that takes the selected Roster Name and uses it to set the active fighterlist object.
         /// </summary>
-        private void PopulateFighterList()
+        private void SetCurrentRosterByName()
         {
-            foreach (Fighter fighter in CurrentRoster.SelectedFighters)
-            {
-                _fighters.Add(fighter);
-            }
-
+            CurrentRoster = AvailableRosters.FirstOrDefault(r => r.ListName == SelectedRosterName);
         }
 
         /// <summary>

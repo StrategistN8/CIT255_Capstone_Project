@@ -1,9 +1,10 @@
-﻿<Window x:Class="CIT255_KT_list_builder.Views.KTBuilderWindow"
+﻿<Window x:Class="CIT255_KT_list_builder.PresentationLayer.Views.KTBuilderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModel="clr-namespace:CIT255_KT_list_builder.ViewModels"
+        xmlns:local="clr-namespace:CIT255_KT_list_builder.PresentationLayer.Views"
+        xmlns:viewModel="clr-namespace:CIT255_KT_list_builder.PresentationLayer.ViewModels"
         mc:Ignorable="d"
         Title="KT Roster Builder" Height="700" Width="1200">
 
@@ -12,18 +13,15 @@
         <Style x:Key="PrimaryGridStyle" TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="Backgrounds\KTLB_BG02.jpg" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Backgrounds\KTLB_BGGSC.jpg" Stretch="UniformToFill"/>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="InnerGridStyle" TargetType="Grid">
             <!--<Setter Property="Background" Value="OrangeRed"/>-->
             <Setter Property="Opacity" Value="0.85"/>
-            <!--<Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource="Backgrounds\KTLB_BG1.jpg" Stretch="UniformToFill" TileMode="Tile"/>
-                </Setter.Value>
-            </Setter>-->
+            <Setter Property="Background" Value="DimGray"/>
+
         </Style>
         <Style x:Key="PrimaryListBoxStyle" TargetType="ListBox">
             <Setter Property="Background" Value="CadetBlue"/>
@@ -36,6 +34,14 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="DataGridLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="Agency FB"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
         <Style x:Key="PrimaryBorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="DimGray"/>
             <Setter Property="BorderThickness" Value="3"/>
@@ -56,15 +62,16 @@
         <Style x:Key="PrimaryComboBoxStyle" TargetType="ComboBox">
             <Setter Property="Background" Value="AliceBlue"/>
             <Setter Property="FontFamily" Value="Agency FB"/>
+            <Setter Property="Foreground" Value="Black"/>
         </Style>
     </Window.Resources>
 
     <!-- Data Context: I guess this won't work with the current constructor. -->
-    <!--<Window.DataContext>
+   <!--<Window.DataContext>
         <viewModel:KTViewModel/>
     </Window.DataContext>-->
-    
-    <!--Main Grid-->
+
+        <!--Main Grid-->
     <Grid
         Style="{StaticResource PrimaryGridStyle}">
         
@@ -87,21 +94,16 @@
                 <!--- Display Stackpanel -->
                 <StackPanel
                  Grid.Column="0">
-                    <!-- Title Lable -->
-                    <Label
-                        Content="Kill Team Roster Builder (unofficial)"
-                        Style="{StaticResource PrimaryLabelStyle}"
-                        FontWeight="Bold"
-                        FontSize="45"/>
-                    <StackPanel
+                    <!-- Items  -->
+                     <StackPanel
                         Orientation="Horizontal">
                         <Label
                             Content="Current Roster: "
                             Style="{StaticResource PrimaryLabelStyle}"
                             Margin="10,0,0,0"/>
                         <ComboBox 
-                            SelectedItem="{Binding CurrentRoster}"
-                            ItemsSource="{Binding AvailableRosters}"
+                            SelectedItem="{Binding SelectedRosterName}"
+                            ItemsSource="{Binding AvailableRostersName}"
                             Style="{StaticResource PrimaryComboBoxStyle}"
                             Width="350"
                             Height="30"/>
@@ -118,40 +120,30 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel
-                                    Orientation="Horizontal">
+                                   Orientation="Horizontal">
                                       <Border Margin="5" BorderBrush="Black" BorderThickness="1">
-                                        <Image 
-                                            Source="\DataAccessLayer\Data\Image\AcolyteHybrid.PNG"
-                                            Stretch="UniformToFill"  
-                                            Width="40" 
-                                            Height="40" />
+                                        <Label
+                                                Content="{Binding TotalCost}"
+                                                Style="{StaticResource DataGridLabelStyle}"
+                                                Padding="0,5"/>
                                       </Border>
                                     <StackPanel
                                         Orientation="Vertical">
                                         <StackPanel
                                             Orientation="Horizontal">
                                             <Label
-                                                Content="{Binding CurrentRoster.SelectedFighter.FighterName}"
+                                                Content="{Binding FighterName}"
+                                                Style="{StaticResource DataGridLabelStyle}"
                                                 Width="120"/>
                                             <Label
-                                                Content="{Binding CurrentRoster.SelectedFighter.FighterType }"
+                                                Content="{Binding FighterType}"
+                                                Style="{StaticResource DataGridLabelStyle}"
                                                 Padding="0,5"/>
-                                            <Label
-                                                Content="{Binding CurrentRoster.SelectedFighter.TotalCost}"
-                                                Padding="0,5"/>
+                                            
                                         </StackPanel>
                                         <StackPanel
                                             Orientation="Horizontal">
-                                            <Button 
-                                                x:Name="Button_View" 
-                                                Width="40"
-                                                Height="20"
-                                                Margin="3"
-                                                VerticalAlignment="Center"           
-                                                FontSize="10"
-                                                Content="View"
-                                                Command="{Binding Path=DataContext.ViewCharacterCommand, ElementName=ListWindow}" />
-                                            <Button 
+                                           <Button 
                                                 x:Name="Button_Delete" 
                                                 Width="40"
                                                 Height="20"
@@ -159,23 +151,23 @@
                                                 VerticalAlignment="Center"           
                                                 FontSize="10"
                                                 Content="Delete"
-                                                Command="{Binding Path=DataContext.DeleteCharacterCommand, ElementName=ListWindow}" />
-                                            <Button 
-                                                x:Name="Button_Edit" 
-                                                Width="40"
-                                                Height="20"
-                                                Margin="3"
-                                                VerticalAlignment="Center"           
-                                                FontSize="10"
-                                                Content="Edit"
-                                                Command="{Binding Path=DataContext.EditCharacterCommand, ElementName=ListWindow}" />
+                                                Command="{Binding Path=DataContext.DeleteFighterFromRosterCommand}" />
+                                            
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-          
+                    
+                <!--Add Fighter Button-->
+                    <Button 
+                        Content="Add New Fighter"
+                        HorizontalContentAlignment="Right"
+                        Padding="0,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        />
                 </StackPanel>
             </Border>
 
@@ -190,7 +182,7 @@
                     MaxWidth="200">
                     
                     <Image 
-                    Source="{Binding CurrentFighterImageSource}"
+                    Source="{Binding CurrentFighter.ImgSource}"
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     MaxWidth="200"/>
@@ -202,6 +194,7 @@
                         Grid.Row="0"
                         Style="{StaticResource PrimaryLabelStyle}"
                         HorizontalAlignment="Left"
+                        ToolTip=""
                         />
                 <TextBox
                         Grid.Column="1"
@@ -396,6 +389,22 @@
                         </DataGrid>
                     </TabItem>
                 </TabControl>
+                <StackPanel Orientation="Horizontal">
+                    <Button 
+                        Content="Add New Equipment"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        />
+                    <Button 
+                        Content="Delete Selected Equipment"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        />
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

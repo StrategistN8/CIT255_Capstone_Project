@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CIT255_KT_list_builder.Views
+namespace CIT255_KT_list_builder.PresentationLayer.Views
 {
     /// <summary>
     /// Interaction logic for KTBuilderWindow.xaml

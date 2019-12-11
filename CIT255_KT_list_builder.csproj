@@ -100,15 +100,15 @@
     <Compile Include="DataAccessLayer\Data\SeedData.cs" />
     <Compile Include="DataAccessLayer\IDataService.cs" />
     <Compile Include="BusinessLayer\TeamRosterRepository.cs" />
-    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Models\DataTypes.cs" />
     <Compile Include="Models\FileIoMessage.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="ViewModels\KTViewModel.cs" />
-    <Compile Include="Views\KTBuilderWindow.xaml.cs">
+    <Compile Include="PresentationLayer\ViewModels\KTViewModel.cs" />
+    <Compile Include="PresentationLayer\Views\KTBuilderWindow.xaml.cs">
       <DependentUpon>KTBuilderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Fighter.cs" />
@@ -135,10 +135,11 @@
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="DataAccessLayer\Data\ApplicationDataSheet.xlsx" />
-    <Resource Include="DataAccessLayer\Data\Rosters.json">
+    <None Include="DataAccessLayer\DataJSON\Rosters.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -149,37 +150,75 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Backgrounds\KTLB_BG1.jpg" />
+    <Resource Include="PresentationLayer\Views\Backgrounds\KTLB_BG1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DataAccessLayer\Data\Image\Aberrant.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\Aberrant2.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\AcolyteFighter.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\AcolyteHybrid.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\AcolyteLeader.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\MetamorphHybrid.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\MetamorphLeader.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\NeophyteGunner.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\NeophyteHybrid.PNG" />
-    <Resource Include="DataAccessLayer\Data\Image\NeophyteLeader.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Views\KTBuilderWindow.xaml">
+    <Page Include="PresentationLayer\Views\KTBuilderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Backgrounds\KTLB_BG2.png" />
+    <Resource Include="PresentationLayer\Views\Backgrounds\KTLB_BG2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Backgrounds\KTLB_BG1.png" />
+    <Resource Include="PresentationLayer\Views\Backgrounds\KTLB_BG1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Backgrounds\KTLB_BG02.jpg" />
+    <Resource Include="PresentationLayer\Views\Backgrounds\KTLB_BG02.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccessLayer\DataJSON\" />
+    <None Include="Images\Aberrant.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Aberrant2.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\AcolyteFighter.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\AcolyteHybrid.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\AcolyteLeader.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\MetamorphHybrid.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\MetamorphLeader.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\NeophyteGunner.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\NeophyteHybrid.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\NeophyteLeader.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PresentationLayer\Views\Backgrounds\KTLB_BGGSC.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />

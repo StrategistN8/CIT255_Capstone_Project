@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using CIT255_KT_list_builder.Models;
 using CIT255_KT_list_builder.BusinessLayer;
-using CIT255_KT_list_builder.Views;
-using CIT255_KT_list_builder.ViewModels;
+using CIT255_KT_list_builder.PresentationLayer.ViewModels;
+using CIT255_KT_list_builder.PresentationLayer.Views;
 
 namespace CIT255_KT_list_builder
 {

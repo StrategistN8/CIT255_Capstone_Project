@@ -36,7 +36,8 @@ namespace CIT255_KT_list_builder.DataAccessLayer
         /// </summary>
         public DataServiceJSON()
         {
-            DataPath = DataConfig.DataPathJson;
+            // DataPath = DataConfig.DataPathJson;
+            DataPath = @"\DataAccessLayer\Data\Rosters.json";
         }
 
         #endregion

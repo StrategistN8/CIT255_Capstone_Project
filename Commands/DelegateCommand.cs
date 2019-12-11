@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Demo_NTier_XmlJsonData
+namespace CIT255_KT_list_builder.Commands
 {
     public class DelegateCommand : ICommand
     {
