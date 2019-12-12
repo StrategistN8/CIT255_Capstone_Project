@@ -119,7 +119,7 @@ namespace CIT255_KT_list_builder.Data
                         FighterSpecialization =  Fighter.Specializations.NONE,
                         FighterEquipmentList = new List<FighterWargear>
                         {
-                            new FighterWargear(1000, 10, "Icon", "Nearby fighters can reroll hit rolls of 1 in melee."),
+
 
                         },
                          FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
@@ -140,6 +140,10 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
 
+                        },
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
+                            new FighterWargear(1000, 10, "Icon", "Nearby fighters can reroll hit rolls of 1 in melee."),
                         }
                     },
                     new Fighter()
@@ -351,7 +355,7 @@ namespace CIT255_KT_list_builder.Data
                          {
                               new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
                               new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
-                              new FighterRangedWeapons(3006, 0, "Mining Laser", "Type: Heavy 1, S:9,  AP -3, Damage: D3, Subtract 1 from hit rolls made with this weapon if the bearer moves"),
+                              new FighterRangedWeapons(3006, 3, "Mining Laser", "Type: Heavy 1, S:9,  AP -3, Damage: D3, Subtract 1 from hit rolls made with this weapon if the bearer moves"),
 
                          },
                         FighterSpecializationOptions = new List<Fighter.Specializations>

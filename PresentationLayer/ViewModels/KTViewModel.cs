@@ -201,6 +201,12 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         /// <summary>
         /// Command to call the delete fighter from roster method.
         /// </summary>
+
+        public ICommand CloseApplicationCommand
+        {
+            get { return new RelayCommand(new Action(ExitApplication)); }
+        }
+
         public ICommand DeleteFighterFromRosterCommand
         {
             get { return new RelayCommand(new Action(DeleteFighter)); }
@@ -211,6 +217,21 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
             get { return new RelayCommand(new Action(AddFighter)); }
         }
 
+        //public ICommand AddNewGunToFighter
+        //{
+        //    get { return new RelayCommand(new Action()); }
+        //}
+
+
+        public ICommand CreateRosterCommand
+        {
+            get { return new RelayCommand(new Action(CreateNewRoster)); }
+        }
+
+        //public ICommand DeleteRoster
+        //{
+        //    get { return new RelayCommand(new Action(DeleteRoster)); }
+        //}
         
         //public ICommand CreateNewRosterCommand
         //{
@@ -274,6 +295,22 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
 
         }
 
+        /// <summary>
+        /// Sends current roster to persistance:
+        /// </summary>
+        private void SaveCurrentRoster()
+        {
+            if (_currentFighter != null)
+            {
+                MessageBoxResult notice = System.Windows.MessageBox.Show($"Confirm: Save {CurrentRoster.ListName} to database?", "Confirm", System.Windows.MessageBoxButton.YesNo);
+
+                if (notice == MessageBoxResult.OK)
+                {
+                    _ktBusiness.AddRosterToPersistance(CurrentRoster);
+                }
+            }
+        }
+        
         #endregion
 
         #region FIGHTER METHODS
@@ -309,6 +346,99 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Method that adds a new ranged weapon entry.
+        /// </summary>
+        private void AddGun()
+        {
+            if (_currentFighter != null)
+            {
+                if (_currentFighter.FighterRangedWeaponOptions == null)
+                {
+                    // Instatiating a list so it won't crash (hopefully)
+                    _currentFighter.FighterRangedWeaponOptions = new List<FighterRangedWeapons>();
+
+                    // Creating a new object:
+                    FighterRangedWeapons newGun = new FighterRangedWeapons(CreateEquipmentID(CurrentFighter.FighterEquipmentList), 0, "New Item", "A new item ready to be described");
+
+                    // Adding object:
+                    _currentFighter.FighterRangedWeaponOptions.Add(newGun);
+                }
+
+                else
+                {
+                    // Creating a new object:
+                    FighterRangedWeapons newGun = new FighterRangedWeapons(CreateEquipmentID(CurrentFighter.FighterEquipmentList), 0, "New Item", "A new item ready to be described");
+
+                    // Adding object:
+                    _currentFighter.FighterRangedWeaponOptions.Add(newGun);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Method that adds a new melee weapon entry.
+        /// </summary>
+        private void AddBlade()
+        {
+            if (_currentFighter != null)
+            {
+                if (_currentFighter.FighterMeleeWeaponOptions == null)
+                {
+                    // Instatiating a list so it won't crash (hopefully)
+                    _currentFighter.FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>();
+
+                    // Creating a new object:
+                    FighterMeleeWeapons newBlade = new FighterMeleeWeapons(CreateEquipmentID(CurrentFighter.FighterEquipmentList), 0, "New Item", "A new item ready to be described");
+
+                    // Adding object:
+                    _currentFighter.FighterMeleeWeaponOptions.Add(newBlade);
+                }
+
+                else
+                {
+                    // Creating a new object:
+                    FighterMeleeWeapons newBlade = new FighterMeleeWeapons(CreateEquipmentID(CurrentFighter.FighterEquipmentList), 0, "New Item", "A new item ready to be described");
+
+                    // Adding object:
+                    _currentFighter.FighterMeleeWeaponOptions.Add(newBlade);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Method that adds a new wargear entry.
+        /// </summary>
+        private void AddGear()
+        {
+            if (_currentFighter != null)
+            {
+                if (_currentFighter.FighterWargearOptions == null)
+                {
+                    // Instatiating a list so it won't crash (hopefully)
+                    _currentFighter.FighterWargearOptions = new List<FighterWargear>();
+
+                    // Creating a new object:
+                    FighterWargear newGear = new FighterWargear(CreateEquipmentID(CurrentFighter.FighterEquipmentList), 0, "New Item", "A new item ready to be described");
+
+                    // Adding object:
+                    _currentFighter.FighterWargearOptions.Add(newGear);
+                }
+
+                else
+                {
+                    // Creating a new object:
+                    FighterWargear newGear = new FighterWargear(CreateEquipmentID(CurrentFighter.FighterEquipmentList), 0, "New Item", "A new item ready to be described");
+
+                    // Adding object:
+                    _currentFighter.FighterWargearOptions.Add(newGear);
+                }
+            }
+
+        }
+               
         /// <summary>
         /// Removes a fighter from the current roster. 
         /// </summary>
@@ -388,6 +518,35 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         {
             CurrentRoster.SelectedFighters = new List<Fighter>(CurrentRoster.SelectedFighters.OrderBy(c => c.FighterType));
         }
+
+        /// <summary>
+        /// Method that generates a new ID number by counting the collection and incrimenting
+        /// </summary>
+        /// <param name="collection"></param>
+        private int CreateFighterID(List<Fighter> fighter)
+        {
+            return (fighter.Count() + 1);
+        }
+
+        /// <summary>
+        /// Method that generates a new ID number by counting the collection and incrimenting
+        /// </summary>
+        /// <param name="collection"></param>
+        private int CreateRosterID(List<FighterList> fighterList)
+        {
+            return (fighterList.Count() + 1);
+        }
+
+        /// <summary>
+        /// Method that generates a new ID number by counting the collection and incrimenting
+        /// </summary>
+        /// <param name="collection"></param>
+        private int CreateEquipmentID(List<FighterWargear> fighterGear)
+        {
+            return (fighterGear.Count() + 1);
+        }
+
+
 
         #endregion
 

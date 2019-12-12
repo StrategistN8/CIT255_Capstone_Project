@@ -94,7 +94,8 @@
             <!--- Display Stackpanel -->
                 <StackPanel
                  Grid.Column="0">
-                    <!-- Items  -->
+                    
+                <!-- Roster Select  -->
                      <StackPanel
                         Orientation="Horizontal">
                         <Label
@@ -109,8 +110,32 @@
                             Width="350"
                             Height="30"/>
                     </StackPanel>
-           
-          <!-- Fighter Display-->
+               
+                <!--Add/Delete Roster Button -->
+                <StackPanel 
+                     Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="10,0,0,0">
+                    <Button 
+                        Content="Save"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        ToolTip="Save current roster to the database. If you do not save any changes will be lost when the application restarts"
+                        Command="{Binding Path=DataContext.AddNewFighterToRosterCommand, ElementName=Main}"
+                        />
+                    <Button 
+                        Content="Delete"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        ToolTip="Removes the current roster from the database. This cannot be undone, so be careful!"
+                        Command="{Binding Path=DataContext.DeleteFighterFromRosterCommand, ElementName=Main}"
+                        />
+                </StackPanel>
+                <!-- Fighter Display-->
                     <ListBox 
                         Margin="10,10,10,10"
                         BorderThickness="0"
@@ -187,6 +212,8 @@
                        Style="{StaticResource PrimaryLabelStyle}"/>
                     </Border>
                 </StackPanel>
+                    
+         
             </StackPanel>
 
             
@@ -300,7 +327,7 @@
                     <TabItem 
                     Header="Ranged"
                     ToolTip="Any ranged weapons assigned to this fighter.">
-                        <DataGrid
+                    <DataGrid
                             Height="Auto"
                             ItemsSource="{Binding CurrentFighter.FighterRangedWeaponOptions}"
                             SelectedItem="{Binding SelectedWargear}"
@@ -310,8 +337,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Header="Name" 
-                                    IsReadOnly="True"
-                                    Binding="{Binding ItemName, Mode=OneWay}"
+                                    Binding="{Binding ItemName}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -322,8 +348,7 @@
 
                                 <DataGridTextColumn
                                     Header="Description"
-                                    IsReadOnly="True"
-                                    Binding="{Binding ItemDescription, Mode=OneWay}"
+                                    Binding="{Binding ItemDescription}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -334,11 +359,11 @@
 
                                 <DataGridTextColumn
                                     Header="Cost"
-                                    IsReadOnly="True"
                                     Width="0.3*"
-                                    Binding ="{Binding ItemCost, Mode=OneWay}"/>
+                                    Binding ="{Binding ItemCost}"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        
                     </TabItem>
 
                     <!-- Melee Equipment-->
@@ -354,8 +379,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Header="Name"
-                                    IsReadOnly="True"
-                                    Binding="{Binding ItemName, Mode=OneWay}"
+                                    Binding="{Binding ItemName}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -366,8 +390,7 @@
 
                                 <DataGridTextColumn
                                     Header="Description"
-                                    IsReadOnly="True"
-                                    Binding="{Binding ItemDescription, Mode=OneWay}"
+                                    Binding="{Binding ItemDescription}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -375,12 +398,10 @@
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-
                                 <DataGridTextColumn
                                     Header="Cost"
-                                    IsReadOnly="True"
                                     Width="0.3*"
-                                    Binding ="{Binding ItemCost, Mode=OneWay}"/>
+                                    Binding ="{Binding ItemCost}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
@@ -429,13 +450,30 @@
                         </DataGrid>
                     </TabItem>
                 </TabControl>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button 
-                        Content="Add New Equipment"
+                        Content="Add Ranged Weapon"
                         HorizontalContentAlignment="Center"
                         Padding="10,1,10,1"
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
+                        ToolTip="Adds a new ranged weapon to the fighter's equipment list."
+                        />
+                    <Button 
+                        Content="Add Melee Weapon"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        ToolTip="Adds a new melee weapon to the fighter's equipment list."
+                        />
+                    <Button 
+                        Content="Add Wargear"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        ToolTip="Adds a new wargear entry to the fighter's equipment list."
                         />
                     <Button 
                         Content="Delete Selected Equipment"
@@ -443,6 +481,7 @@
                         Padding="10,1,10,1"
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
+                        ToolTip="Deletes the currently selected equipment item. This cannot be undone!"
                         />
                 </StackPanel>
             </StackPanel>
