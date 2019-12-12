@@ -202,26 +202,39 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         /// Command to call the delete fighter from roster method.
         /// </summary>
 
+        // Misc. Commands:
         public ICommand CloseApplicationCommand
         {
             get { return new RelayCommand(new Action(ExitApplication)); }
+        }       
+
+        // Fighter CRUD
+        public ICommand AddNewGunToFighterCommand
+        {
+            get { return new RelayCommand(new Action(AddGun)); }
+        }
+        public ICommand AddNewBladeToFighterCommand
+        {
+            get { return new RelayCommand(new Action(AddBlade)); }
+        }
+        public ICommand AddNewGearToFighterCommand
+        {
+            get { return new RelayCommand(new Action(AddGear)); }
+        }
+        public ICommand DeleteGearFromFighterCommand
+        {
+            get { return new RelayCommand(new Action(DeleteGear)); }
         }
 
+        // Roster Commands:
         public ICommand DeleteFighterFromRosterCommand
         {
             get { return new RelayCommand(new Action(DeleteFighter)); }
         }
-
         public ICommand AddNewFighterToRosterCommand
         {
             get { return new RelayCommand(new Action(AddFighter)); }
         }
-
-        //public ICommand AddNewGunToFighter
-        //{
-        //    get { return new RelayCommand(new Action()); }
-        //}
-
 
         public ICommand CreateRosterCommand
         {
@@ -437,6 +450,37 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Removes gear from fighter.
+        /// </summary>
+        private void DeleteGear()
+        {
+            if (_currentFighter != null)
+            {
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show($"Confirm removal of {SelectedWargear.ItemName}? This cannot be undone.", "Delete", System.Windows.MessageBoxButton.OKCancel);
+
+                if (messageBoxResult == MessageBoxResult.OK)
+                {
+                    if (_currentFighter.FighterRangedWeaponOptions.Contains(SelectedWargear as FighterRangedWeapons) && _currentFighter.FighterRangedWeaponOptions != null)
+                    {
+                        _currentFighter.FighterRangedWeaponOptions.Remove(SelectedWargear as FighterRangedWeapons); 
+                    }
+                    if (_currentFighter.FighterMeleeWeaponOptions.Contains(SelectedWargear as FighterMeleeWeapons) && _currentFighter.FighterMeleeWeaponOptions != null)
+                    {
+                        _currentFighter.FighterMeleeWeaponOptions.Remove(SelectedWargear as FighterMeleeWeapons);
+                    }
+
+                    if (_currentFighter.FighterWargearOptions.Contains(SelectedWargear) && _currentFighter.FighterWargearOptions != null)
+                    {
+                        _currentFighter.FighterWargearOptions.Remove(SelectedWargear);
+                    }
+                    
+                    //_ktBusiness.UpdateRoster(CurrentRoster);
+
+                }
+            }
         }
                
         /// <summary>

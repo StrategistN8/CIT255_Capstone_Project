@@ -458,6 +458,7 @@
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
                         ToolTip="Adds a new ranged weapon to the fighter's equipment list."
+                        Command="{Binding Path=DataContext.AddNewGunToFighterCommand, ElementName=Main}"
                         />
                     <Button 
                         Content="Add Melee Weapon"
@@ -466,6 +467,7 @@
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
                         ToolTip="Adds a new melee weapon to the fighter's equipment list."
+                        Command="{Binding Path=DataContext.AddNewBladeToFighterCommand, ElementName=Main}"
                         />
                     <Button 
                         Content="Add Wargear"
@@ -474,6 +476,7 @@
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
                         ToolTip="Adds a new wargear entry to the fighter's equipment list."
+                        Command="{Binding Path=DataContext.AddNewGearToFighterCommand, ElementName=Main}"
                         />
                     <Button 
                         Content="Delete Selected Equipment"
@@ -482,6 +485,7 @@
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
                         ToolTip="Deletes the currently selected equipment item. This cannot be undone!"
+                        Command="{Binding Path=DataContext.DeleteGearFromFighterCommand, ElementName=Main}"
                         />
                 </StackPanel>
             </StackPanel>

@@ -71,6 +71,10 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
 
+                        },
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
+                            
                         }
                     },
                     new Fighter()
@@ -104,6 +108,10 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMBAT,
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
+
+                        },
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
 
                         }
                     },
@@ -179,6 +187,11 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
                         }
+                        ,
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
+
+                        }
                     },
                     new Fighter()
                     {
@@ -211,6 +224,11 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMBAT,
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
+
+                        }
+                        ,
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
 
                         }
                     },
@@ -259,6 +277,11 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.ZEALOT
 
                         }
+                        ,
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
+
+                        }
                     },
                     new Fighter()
                     {
@@ -294,6 +317,10 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
                         },
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
+
+                        }
 
                     },
                     new Fighter()
@@ -329,6 +356,11 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMBAT,
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
+
+                        }
+                        ,
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
 
                         }
                     },
@@ -367,6 +399,11 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.ZEALOT
 
                         }
+                        ,
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
+
+                        }
                     },
                     new Fighter()
                     {
@@ -397,6 +434,11 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.ZEALOT
 
                         }
+                        ,
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
+
+                        }
                     },
                     new Fighter()
                     {
@@ -425,6 +467,11 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMBAT,
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
+
+                        }
+                        ,
+                        FighterWargearOptions = new List<FighterWargear>
+                        {
 
                         }
                     },
