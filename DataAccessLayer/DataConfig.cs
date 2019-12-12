@@ -17,7 +17,9 @@ namespace CIT255_KT_list_builder.DataAccessLayer
         //public static DataType dataType = DataType.BSON;
         //public static DataType dataType = DataType.SQL;
         public static string DataPathJson => @"\CIT255_KT_list_builder\DataAccessLayer\Data\Rosters.json";
-        public static string DataPathMongo = @"mongodb+srv://lyons41:CIT255DEMO@nmcprojectdatabase-gxp1k.azure.mongodb.net/test?retryWrites=true&w=majority";
+        public static string DataPathMongo = "mongodb+srv://lyons41:CIT255DEMO@nmcprojectdatabase-gxp1k.azure.mongodb.net/test?retryWrites=true&w=majority";
+        public static string MongoDBName = "KTLB";
+
         public static string ImagePath => @"\CIT255_KT_list_builder\Images\";
 
         #endregion

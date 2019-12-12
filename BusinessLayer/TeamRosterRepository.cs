@@ -66,8 +66,8 @@ namespace CIT255_KT_list_builder.DataAccessLayer
                 //    break;
                 case DataType.JSON:
                     return new DataServiceJSON();
-                //case DataType.BSON:
-                //    break;
+                case DataType.BSON:
+                    return new DataServiceMongo(DataConfig.MongoDBName);
                 //case DataType.SQL:
                 //    break;
                 default:

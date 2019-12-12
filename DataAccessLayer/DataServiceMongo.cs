@@ -14,7 +14,7 @@ namespace CIT255_KT_list_builder.DataAccessLayer
     /// I was provided the following tutorial by PJ to help with this section: 
     /// https://www.youtube.com/watch?v=69WBy4MHYUw
     /// </summary>
-    public class DataServiceMongo : FighterRepository
+    public class DataServiceMongo : IDataService
     {
         #region FIELDS
         private string _connectionString;
@@ -42,38 +42,12 @@ namespace CIT255_KT_list_builder.DataAccessLayer
             _client = new MongoClient(_connectionString);
             _mongoDatabase = _client.GetDatabase(database); 
         }
-        #endregion
 
-        #region METHODS
-        
-        public void Add(FighterList roster)
+        public IEnumerable<FighterList> ReadAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public void CreateRoster(FighterList fighterList)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteRoster(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<FighterList> GetAll()
-        {
-            //Temp: 
-            string table = "";
-
             try
             {
-                var collection = MongoDatabase.GetCollection<FighterList>(table);
+                var collection = MongoDatabase.GetCollection<FighterList>("FighterLists");
                 return collection.Find(new BsonDocument()).ToList();
             }
             catch (Exception)
@@ -83,30 +57,17 @@ namespace CIT255_KT_list_builder.DataAccessLayer
             }
         }
 
-        public FighterList GetById(int id)
+        public void WriteAll(IEnumerable<FighterList> roster)
         {
-            throw new NotImplementedException();
+            var collection = MongoDatabase.GetCollection<FighterList>("FighterLists");
+            foreach (FighterList list in roster)
+            {
+                collection.InsertOne(list);
+            }
         }
+        #endregion
 
-        public FighterList GetByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<FighterList> ReadAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(FighterList roster)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateRoster(FighterList fighterList)
-        {
-            throw new NotImplementedException();
-        }
+        #region METHODS
 
 
         #endregion
