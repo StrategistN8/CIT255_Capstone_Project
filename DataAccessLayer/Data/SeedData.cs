@@ -46,6 +46,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 0,
+                        FighterCost = 8,
                         FighterType = "Acolyte Leader",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "AcolyteLeader.PNG",
@@ -55,6 +56,11 @@ namespace CIT255_KT_list_builder.Data
                         {
 
 
+                        },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                           new FighterMeleeWeapons(2000, 0, "Cult Knife", "Type: Melee, S: User,  AP -, Damage: 1, A model may make 1 free attack with this weapon when they fight."),
+                           new FighterMeleeWeapons(2001, 0, "Rending Claw", "Type: Melee S: User,  AP -1, Damage: 1, To-wound rolls of 6+ are resolved at AP-4."),
                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
@@ -69,6 +75,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 1,
+                        FighterCost = 8,
                         FighterType = "Acolyte Fighter",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "AcolyteFighter.PNG",
@@ -78,6 +85,15 @@ namespace CIT255_KT_list_builder.Data
                         {
 
 
+                        },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                            new FighterMeleeWeapons(2006, 3, "Heavy Rock Saw", "Type: MeleeS:2X,  AP -4, Damage: 2"),
+                        },
+                        FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                        {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
@@ -92,6 +108,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 2,
+                        FighterCost = 7,
                         FighterType = "Acolyte Hybrid",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "AcolyteHybrid.PNG",
@@ -101,6 +118,16 @@ namespace CIT255_KT_list_builder.Data
                         {
 
 
+                        },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                           new FighterMeleeWeapons(2000, 0, "Cult Knife", "Type: Melee, S: User,  AP -, Damage: 1, A model may make 1 free attack with this weapon when they fight."),
+                           new FighterMeleeWeapons(2001, 0, "Rending Claw", "Type: Melee S: User,  AP -1, Damage: 1, To-wound rolls of 6+ are resolved at AP-4."),
+                        },
+                        FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                        {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
@@ -115,6 +142,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 3,
+                        FighterCost = 8,
                         FighterType = "Metamorph",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "MetamorphHybrid.PNG",
@@ -125,6 +153,16 @@ namespace CIT255_KT_list_builder.Data
 
 
                         },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                           new FighterMeleeWeapons(2000, 0, "Cult Knife", "Type: Melee, S: User,  AP -, Damage: 1, A model may make 1 free attack with this weapon when they fight."),
+                           new FighterMeleeWeapons(2001, 0, "Rending Claw", "Type: Melee S: User,  AP -1, Damage: 1, To-wound rolls of 6+ are resolved at AP-4."),
+                        },
+                        FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                        {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
+                        },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
                          Fighter.Specializations.NONE,
@@ -132,12 +170,12 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMBAT,
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
-
                         }
                     },
                     new Fighter()
                     {
                         FighterID = 4,
+                        FighterCost = 16,
                         FighterType = "Aberrant",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "Aberrant2.PNG",
@@ -147,6 +185,16 @@ namespace CIT255_KT_list_builder.Data
                         {
 
 
+                        },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                          new FighterMeleeWeapons(2008, 5, "Power Pick", "Type: Melee, S: user, AP - 2, Damage: D3"),
+                          new FighterMeleeWeapons(2001, 0, "Rending Claw", "Type: Melee S: User,  AP -1, Damage: 1, To-wound rolls of 6+ are resolved at AP-4."),
+                        },
+                        FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                        {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
@@ -172,6 +220,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 6,
+                        FighterCost = 6,
                         FighterType = "Neophyte Leader",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "NeophyteLeader.PNG",
@@ -181,6 +230,16 @@ namespace CIT255_KT_list_builder.Data
                         {
 
 
+                        },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                           new FighterMeleeWeapons(2000, 0, "Cult Knife", "Type: Melee, S: User,  AP -, Damage: 1, A model may make 1 free attack with this weapon when they fight."),
+
+                        },
+                        FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                        {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
@@ -195,6 +254,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 7,
+                        FighterCost = 5,
                         FighterType = "Neophyte Hybrid",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "NeophyteHybrid.PNG",
@@ -205,6 +265,17 @@ namespace CIT255_KT_list_builder.Data
 
 
                         },
+                        FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+
+                        },
+                         FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                         {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
+                              new FighterRangedWeapons(3003, 0, "Autogun", "Type: Rapid Fire, S:3,  AP -, Damage 1, This weapon fires an additional shot at half range.")
+
+                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
                          Fighter.Specializations.NONE,
@@ -212,12 +283,13 @@ namespace CIT255_KT_list_builder.Data
                          Fighter.Specializations.COMBAT,
                          Fighter.Specializations.COMMS,
                          Fighter.Specializations.ZEALOT
+                        },
 
-                        }
                     },
                     new Fighter()
                     {
                         FighterID = 8,
+                        FighterCost = 5,
                         FighterType = "Neophyte Hybrid",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "NeophyteHybrid.PNG",
@@ -228,6 +300,17 @@ namespace CIT255_KT_list_builder.Data
 
 
                         },
+                        FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+
+                        },
+                         FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                         {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
+                              new FighterRangedWeapons(3003, 0, "Autogun", "Type: Rapid Fire, S:3,  AP -, Damage 1, This weapon fires an additional shot at half range.")
+
+                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
                          Fighter.Specializations.NONE,
@@ -241,6 +324,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 9,
+                        FighterCost = 5,
                         FighterType = "Neophyte Gunner",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "NeophyteGunner.PNG",
@@ -251,6 +335,17 @@ namespace CIT255_KT_list_builder.Data
 
 
                         },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+
+                        },
+                         FighterRangedWeaponOptions = new List<FighterRangedWeapons>
+                         {
+                              new FighterRangedWeapons(3000, 0, "Blasting Charge", "Type: Grenade D6, S:3,  AP -, Damage: 1"),
+                              new FighterRangedWeapons(3001, 0, "Autopistol", "Type: Pistol 1 S:3,  AP -, Damage: 1, This weapon can be fired while in melee."),
+                              new FighterRangedWeapons(3003, 0, "Autogun", "Type: Rapid Fire, S:3,  AP -, Damage 1, This weapon fires an additional shot at half range.")
+
+                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
                          Fighter.Specializations.NONE,
@@ -264,15 +359,21 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 10,
-                        FighterType = "Metamorph",
+                        FighterCost = 16,
+                        FighterType = "Aberrant",
                         FighterFaction = "Genestealer Cults",
-                        ImgFile = "MetamorphHybrid.PNG",
+                        ImgFile = "Aberrant1.PNG",
                         IsSpecialist = false,
                         FighterSpecialization =  Fighter.Specializations.NONE,
                         FighterEquipmentList = new List<FighterWargear>
                         {
 
 
+                        },
+                         FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                          new FighterMeleeWeapons(2008, 5, "Power Pick", "Type: Melee, S: user, AP - 2, Damage: D3"),
+                          new FighterMeleeWeapons(2001, 0, "Rending Claw", "Type: Melee S: User,  AP -1, Damage: 1, To-wound rolls of 6+ are resolved at AP-4.")
                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
@@ -287,6 +388,7 @@ namespace CIT255_KT_list_builder.Data
                     new Fighter()
                     {
                         FighterID = 11,
+                        FighterCost = 16,
                         FighterType = "Aberrant",
                         FighterFaction = "Genestealer Cults",
                         ImgFile = "Aberrant2.PNG",
@@ -296,6 +398,11 @@ namespace CIT255_KT_list_builder.Data
                         {
 
 
+                        },
+                        FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>
+                        {
+                          new FighterMeleeWeapons(2008, 5, "Power Pick", "Type: Melee, S: user, AP - 2, Damage: D3"),
+                          new FighterMeleeWeapons(2001, 0, "Rending Claw", "Type: Melee S: User,  AP -1, Damage: 1, To-wound rolls of 6+ are resolved at AP-4.")
                         },
                         FighterSpecializationOptions = new List<Fighter.Specializations>
                         {
@@ -310,7 +417,7 @@ namespace CIT255_KT_list_builder.Data
                 }
             },
             };
-            
+
 
             return seedList;
         }

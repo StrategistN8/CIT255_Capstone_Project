@@ -33,7 +33,7 @@ namespace CIT255_KT_list_builder.Models
         private int _fighterID;
         private int _limit;
         private int _fighterCost;
-        private int _totalCost;
+        private int _fighterTotalCost;
 
         // String variables
         private string _fighterName;
@@ -69,12 +69,16 @@ namespace CIT255_KT_list_builder.Models
         public int FighterCost
         {
             get { return _fighterCost; }
-            set { _fighterCost = value; }
+            set
+            {
+                _fighterCost = value;
+                CalculateTotalFighterCost();
+            }
         }
-        public int TotalCost
+        public int FighterTotalCost
         {
-            get { return _totalCost; }
-            set { _totalCost = value; }
+            get { return _fighterTotalCost; }
+            set { _fighterTotalCost = value; }
         }
         public string FighterName
         {
@@ -119,22 +123,38 @@ namespace CIT255_KT_list_builder.Models
         public List<FighterWargear> FighterEquipmentList
         {
             get { return _fighterEquipmentList; }
-            set { _fighterEquipmentList = value; }
+            set
+            {
+                _fighterEquipmentList = value;
+                CalculateTotalFighterCost();
+            }
         }
         public List<FighterMeleeWeapons> FighterMeleeWeaponOptions
         {
             get { return _fighterMeleeWeaponsOptions; }
-            set { _fighterMeleeWeaponsOptions = value; }
+            set
+            {
+                _fighterMeleeWeaponsOptions = value;
+                CalculateTotalFighterCost();
+            }
         }
         public List<FighterRangedWeapons> FighterRangedWeaponOptions
         {
             get { return _fighterRangedWeaponOptions; }
-            set { _fighterRangedWeaponOptions = value; }
+            set
+            {
+                _fighterRangedWeaponOptions = value;
+                CalculateTotalFighterCost();
+            }
         }
         public List<FighterWargear> FighterWargearOptions
         {
             get { return _fighterWargearOptions; }
-            set { _fighterWargearOptions = value; }
+            set
+            {
+                _fighterWargearOptions = value;
+                CalculateTotalFighterCost();
+            }
         }
         public List<Specializations> FighterSpecializationOptions
         {
@@ -157,23 +177,94 @@ namespace CIT255_KT_list_builder.Models
         #region METHODS
 
         /// <summary>
+        /// Method that takes all information from the wargear lists and compiles them into a single equipment list.
+        /// </summary>
+        public void CompileFighterInventory()
+        {
+            if (FighterEquipmentList != null)
+            {
+                FighterEquipmentList.Clear();
+
+                if (FighterRangedWeaponOptions != null)
+                {
+                    foreach (FighterRangedWeapons rangedWeapon in FighterRangedWeaponOptions)
+                    {
+                        FighterEquipmentList.Add(rangedWeapon as FighterWargear);
+                    }
+                }
+
+                if (FighterMeleeWeaponOptions != null)
+                {
+                    foreach (FighterMeleeWeapons meleeWeapon in FighterMeleeWeaponOptions)
+                    {
+                        FighterEquipmentList.Add(meleeWeapon as FighterWargear);
+                    }
+                }
+                if (FighterWargearOptions != null)
+                {
+                    foreach (FighterWargear wargear in FighterWargearOptions)
+                    {
+                        FighterEquipmentList.Add(wargear);
+                    }
+                }
+            }
+           
+
+            CalculateTotalFighterCost();
+
+        }
+
+        /// <summary>
         /// Helper method that calculates the total cost of the fighter based on their equipped gear.
         /// </summary>
         /// <param name="fighter"></param>
         /// <returns></returns>
-        public int CalculateTotalFighterCost(Fighter fighter)
+        private void CalculateTotalFighterCost()
         {
-            fighter.TotalCost = fighter.FighterCost;
+            FighterTotalCost = FighterCost;
 
-            foreach (FighterWargear wargear in fighter.FighterEquipmentList)
+            if (FighterEquipmentList != null)
             {
-                fighter.TotalCost += wargear.ItemCost;
+                foreach (FighterWargear wargear in FighterEquipmentList)
+                {
+                    FighterTotalCost += wargear.ItemCost;
+                }
+            }
+            
+        }
+        
+        /// <summary>
+        /// Helper method used to create a list of Specializations in string form.  Used to 
+        /// populate a generic fighter with all enum options. To be replaced with a stored enum eventually.
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GenerateListOfSpecializationString()
+        {
+            List<string> templist = Enum.GetNames(typeof(Specializations)).ToList();
+
+            return templist;
+        }
+        
+        /// <summary>
+        /// A (rather inefficent) helper method to create a list of all specializations.
+        /// </summary>
+        /// <returns></returns>
+        public List<Specializations> GenerateListofSpecializations()
+        {
+            List<Specializations> enumList = new List<Specializations>();
+
+            List<string> templist = Enum.GetNames(typeof(Specializations)).ToList();
+
+            foreach (string value in templist)
+            {
+                Enum.TryParse(value, out Specializations specialization);
+                enumList.Add(specialization);
             }
 
-            return fighter.TotalCost; 
-
+            return enumList;
         }
         #endregion
+
 
     }
 }

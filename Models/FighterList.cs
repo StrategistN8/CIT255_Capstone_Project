@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CIT255_KT_list_builder.Models
 {
-    public class FighterList 
+    public class FighterList : ObservableObject
     {
         #region FIELDS       
         private string _listName;
@@ -47,7 +47,11 @@ namespace CIT255_KT_list_builder.Models
         public int CurrentPoints
         {
             get { return _currentPoints; }
-            set { _currentPoints = value; }
+            set
+            {
+                _currentPoints = value;
+                OnPropertyChanged(nameof(CurrentPoints));
+            }
         }
         public int MaxPoints
         {
@@ -57,12 +61,20 @@ namespace CIT255_KT_list_builder.Models
         public List<Fighter> AvailableFighters
         {
             get { return _availableFighters; }
-            set { _availableFighters = value; }
+            set
+            {
+                _availableFighters = value;
+                OnPropertyChanged(nameof(CurrentPoints));
+            }
         }
         public List<Fighter> SelectedFighters
         {
             get { return _selectedFighters; }
-            set { _selectedFighters = value; }
+            set
+            {
+                _selectedFighters = value;
+                OnPropertyChanged(nameof(CurrentPoints));
+            }
         }
 
         #endregion
@@ -72,6 +84,29 @@ namespace CIT255_KT_list_builder.Models
         #endregion
 
         #region METHODS
+
+        /// <summary>
+        /// Helper Method that determines the total points value of the list.
+        /// </summary>
+        private void CalculateListPoints()
+        {
+            CurrentPoints = 0;
+
+            foreach (Fighter fighter in SelectedFighters)
+            {
+                CurrentPoints += fighter.FighterTotalCost;
+            }
+        }
+
+        /// <summary>
+        /// Method that calculates the total point value of the list.
+        /// </summary>
+        /// <returns></returns>
+        public int GetListPoints()
+        {
+            CalculateListPoints();
+            return CurrentPoints;
+        }
 
         #endregion
         

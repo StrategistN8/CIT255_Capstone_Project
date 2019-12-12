@@ -38,7 +38,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         private Fighter _currentFighter;
         private Fighter _displayFighter;
         private FighterWargear _selectedWargear;
-        
+       
         private ObservableCollection<FighterList> _availableRosters;
         private ObservableCollection<String> _availableRostersName;      
         private ObservableCollection<Fighter> _fighters;
@@ -85,7 +85,10 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
                     return;
                 }
                 _currentFighter = value;
+                _currentFighter.CompileFighterInventory();
+                _currentRoster.GetListPoints();
                 OnPropertyChanged(nameof(CurrentFighter));
+                OnPropertyChanged(nameof(CurrentRoster));
             }
         }
         public Fighter DisplayFighter
@@ -189,15 +192,25 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
                 SetCurrentRosterByName();
             }
         }
+        public string Errors { get; set; }
 
         #endregion
 
         #region COMMANDS
 
+        /// <summary>
+        /// Command to call the delete fighter from roster method.
+        /// </summary>
         public ICommand DeleteFighterFromRosterCommand
         {
             get { return new RelayCommand(new Action(DeleteFighter)); }
         }
+
+        public ICommand AddNewFighterToRosterCommand
+        {
+            get { return new RelayCommand(new Action(AddFighter)); }
+        }
+
         
         //public ICommand CreateNewRosterCommand
         //{
@@ -256,7 +269,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         /// </summary>
         private void CreateNewRoster ()
         {
-           FighterList newList = new FighterList();
+            FighterList newList = new FighterList();
             AvailableRosters.Add(newList);
 
         }
@@ -266,143 +279,56 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         #region FIGHTER METHODS
 
         /// <summary>
+        /// Creates a new blank fighter and adds it to the current roster.
+        /// </summary>
+        private void AddFighter()
+        {
+            if (_currentRoster != null)
+            {
+                Fighter newFighter = new Fighter()
+                {
+                    FighterName = "New Fighter",
+                    FighterType = "Type ?",
+                    FighterCost = 0,
+                    FighterEquipmentList = new List<FighterWargear>(),
+                    FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>(),
+                    FighterRangedWeaponOptions = new List<FighterRangedWeapons>(),
+                    FighterSpecialization = Fighter.Specializations.NONE                   
+
+                };
+                newFighter.FighterSpecializationOptions = newFighter.GenerateListofSpecializations();
+                CurrentRoster.SelectedFighters.Add(newFighter);
+                CurrentFighter = newFighter;
+                //_ktBusiness.UpdateRoster(CurrentRoster);
+                
+            }
+
+            else
+            {
+                Errors = "No roster selected.";
+            }
+        }
+
+        /// <summary>
         /// Removes a fighter from the current roster. 
         /// </summary>
         private void DeleteFighter()
         {
-            if (_currentFighter != null && _currentRoster != null)
+            if (_currentFighter != null)
             {
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show($"Confirm removal of {CurrentFighter}? This cannot be undone.", "Delete", System.Windows.MessageBoxButton.OKCancel);
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show($"Confirm removal of {CurrentFighter.FighterName}? This cannot be undone.", "Delete", System.Windows.MessageBoxButton.OKCancel);
 
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
                     CurrentRoster.SelectedFighters.Remove(CurrentRoster.SelectedFighters.FirstOrDefault(c => c.FighterID == _currentFighter.FighterID));
 
                     //_ktBusiness.UpdateRoster(CurrentRoster);
-                    
+
                 }
             }
         }
 
-        /// <summary>
-        /// Edits an existing fighter in the current roster.
-        /// </summary>
-        private void EditFighter()
-        {
-            if (_currentFighter != null && _currentRoster != null)
-            {
-                _currentOperation = ActiveOperation.UPDATE;
-                IsEditing = true;
-                ShowButton = false;
-                // Method to update the temp character to persistance.
-            }
-        }
-       
-        /// <summary>
-        /// Brings up the current configuration of a fighter from the list. 
-        /// </summary>
-        private void ViewFighterDetails()
-        {
-            if (_currentFighter != null && _currentRoster != null)
-            {
-                //_operationStatus = ActiveOperation.VIEW;
-                IsEditing = false;
-                // Method to update the temp character with data from persistance.
-            }
-        }
-
-        /// <summary>
-        /// Instantiates a new fighter and adds them to the list.
-        /// </summary>
-        private void AddNewFighter()
-        {
-            //ResetTempFighter
-            IsEditing = true;
-            ShowButton = false;
-            //OperationStatus = ActiveOperation.ADD;
-        }
-
-        /// <summary>
-        /// Method that completes operations after 
-        /// </summary>
-        private void SaveChanges()
-        {
-            switch (_currentOperation)
-            {
-                case ActiveOperation.NONE:
-                    break;
-                case ActiveOperation.VIEW:
-                    break;
-                case ActiveOperation.UPDATE:
-                    Fighter fighterToUpdate = _currentRoster.SelectedFighters.FirstOrDefault(c => c.FighterID == CurrentFighter.FighterID);
-                    if (_currentFighter != null && _currentRoster != null)
-                    {
-                        //_ktBusiness.UpdateFighter()
-                        //_currentRoster.SelectedFighters.Remove();
-                        //_currentRoster.SelectedFighters.Add();
-                    }
-                    break;
-                case ActiveOperation.ADD:
-                    if (_currentFighter != null && _currentRoster != null)
-                    {
-                        //_ktBusiness.AddFighter()
-                        //_currentRoster.SelectedFighters.Add();
-                    }
-                    break;
-                case ActiveOperation.DELETE:
-                    break;
-                default:
-                    break;
-            }
-
-            // Method to reset the temp character.
-            IsEditing = false;
-            ShowButton = true;
-            CurrentOperation = ActiveOperation.NONE;
-        }
-        
-        /// <summary>
-        /// Helper method that resets the app upon termination of an operation.
-        /// </summary>
-        private void OnCancelOperation()
-        {
-            //Method to reset temp character.
-            _currentOperation = ActiveOperation.NONE;
-            IsEditing = false;
-            ShowButton = true;
-        }
-        
-        /// <summary>
-        /// Method that mirrors the selected character to the display character.
-        /// </summary>
-        private void UpdateDisplayFighterToSelectedFighter()
-        {
-            // Mirror currently selected fighter with the display fighter.
-            _displayFighter = new Fighter(); 
-            _displayFighter.FighterID = _currentFighter.FighterID;
-            _displayFighter.FighterFaction = _currentFighter.FighterFaction;
-            _displayFighter.FighterName = _currentFighter.FighterName;
-            _displayFighter.FighterType = _currentFighter.FighterType;
-            _displayFighter.FighterSpecialization = _currentFighter.FighterSpecialization;
-            _displayFighter.FighterWargearOptions = _currentFighter.FighterWargearOptions;
-            _displayFighter.ImgFile = _currentFighter.ImgFile;
-
-
-        }
-
-        /// <summary>
-        /// Creates a blank character to work with.
-        /// </summary>
-        private void ResetDisplayFighter()
-        {
-            _displayFighter = new Fighter();
-            _displayFighter.FighterFaction = "";
-            _displayFighter.FighterName = "";
-            _displayFighter.FighterType = "";
-            _displayFighter.FighterSpecialization = Fighter.Specializations.NONE;
-            _displayFighter.ImgFile = "";
-
-        }
+   
         #endregion
 
         #region HELPER METHODS
@@ -444,7 +370,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         /// </summary>
         private void SortListByCost()
         {
-            CurrentRoster.SelectedFighters = new List<Fighter>(CurrentRoster.SelectedFighters.OrderBy(c => c.TotalCost));
+            CurrentRoster.SelectedFighters = new List<Fighter>(CurrentRoster.SelectedFighters.OrderBy(c => c.FighterTotalCost));
         }
 
         /// <summary>

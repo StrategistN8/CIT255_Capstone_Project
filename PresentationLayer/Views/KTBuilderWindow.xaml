@@ -1,4 +1,5 @@
 ﻿<Window x:Class="CIT255_KT_list_builder.PresentationLayer.Views.KTBuilderWindow"
+        x:Name="Main"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,7 @@
         xmlns:local="clr-namespace:CIT255_KT_list_builder.PresentationLayer.Views"
         xmlns:viewModel="clr-namespace:CIT255_KT_list_builder.PresentationLayer.ViewModels"
         mc:Ignorable="d"
-        Title="KT Roster Builder" Height="700" Width="1200">
+        Title="KT Roster Builder" Height="700" Width="1200" WindowStartupLocation="CenterScreen">
 
     <!-- Resources -->
     <Window.Resources>
@@ -21,7 +22,6 @@
             <!--<Setter Property="Background" Value="OrangeRed"/>-->
             <Setter Property="Opacity" Value="0.85"/>
             <Setter Property="Background" Value="DimGray"/>
-
         </Style>
         <Style x:Key="PrimaryListBoxStyle" TargetType="ListBox">
             <Setter Property="Background" Value="CadetBlue"/>
@@ -41,7 +41,11 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
-
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,1,10,1"/>
+            <Setter Property="FontFamily" Value="Agency FB"/>
+        </Style>
         <Style x:Key="PrimaryBorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="DimGray"/>
             <Setter Property="BorderThickness" Value="3"/>
@@ -77,7 +81,7 @@
         
     <!--Inner Grid-->
         <Grid
-            Style="{StaticResource InnerGridStyle}">
+            Style="{StaticResource InnerGridStyle}" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -86,12 +90,8 @@
                 <ColumnDefinition Width="41*"/>
                 <ColumnDefinition Width="58*"/>
             </Grid.ColumnDefinitions>
-
-            <!--List Display-->
-            <Border
-                Style="{StaticResource PrimaryBorderStyle}">
-                            
-                <!--- Display Stackpanel -->
+                           
+            <!--- Display Stackpanel -->
                 <StackPanel
                  Grid.Column="0">
                     <!-- Items  -->
@@ -100,7 +100,8 @@
                         <Label
                             Content="Current Roster: "
                             Style="{StaticResource PrimaryLabelStyle}"
-                            Margin="10,0,0,0"/>
+                            Margin="10,0,0,0"
+                            ToolTip="This menu shows available rosters so you can select them."/>
                         <ComboBox 
                             SelectedItem="{Binding SelectedRosterName}"
                             ItemsSource="{Binding AvailableRostersName}"
@@ -121,55 +122,75 @@
                             <DataTemplate>
                                 <StackPanel
                                    Orientation="Horizontal">
-                                      <Border Margin="5" BorderBrush="Black" BorderThickness="1">
+                                    <Border Margin="5" BorderBrush="Black" BorderThickness="1">
                                         <Label
-                                                Content="{Binding TotalCost}"
+                                                Content="{Binding FighterTotalCost}"
                                                 Style="{StaticResource DataGridLabelStyle}"
-                                                Padding="0,5"/>
-                                      </Border>
+                                                Padding="0,5"
+                                                MinWidth="30"
+                                                ToolTip="Total Cost of this fighter."/>
+                                    </Border>
                                     <StackPanel
-                                        Orientation="Vertical">
-                                        <StackPanel
                                             Orientation="Horizontal">
-                                            <Label
+                                        <Label
                                                 Content="{Binding FighterName}"
                                                 Style="{StaticResource DataGridLabelStyle}"
-                                                Width="120"/>
-                                            <Label
+                                                Width="120"
+                                                ToolTip="Name of this fighter."/>
+                                        <Label
                                                 Content="{Binding FighterType}"
                                                 Style="{StaticResource DataGridLabelStyle}"
-                                                Padding="0,5"/>
-                                            
-                                        </StackPanel>
-                                        <StackPanel
-                                            Orientation="Horizontal">
-                                           <Button 
-                                                x:Name="Button_Delete" 
-                                                Width="40"
-                                                Height="20"
-                                                Margin="3"
-                                                VerticalAlignment="Center"           
-                                                FontSize="10"
-                                                Content="Delete"
-                                                Command="{Binding Path=DataContext.DeleteFighterFromRosterCommand}" />
-                                            
-                                        </StackPanel>
+                                                Padding="0,5"
+                                                ToolTip="Type of fighter."/>
+
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                     
-                <!--Add Fighter Button-->
+          <!--Add and Remove Fighter Button-->
+                <StackPanel 
+                     Orientation="Horizontal"
+                    HorizontalAlignment="Left">
                     <Button 
                         Content="Add New Fighter"
-                        HorizontalContentAlignment="Right"
-                        Padding="0,1,10,1"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
+                        ToolTip="Create an empty fighter record and add it to the roster."
+                        Command="{Binding Path=DataContext.AddNewFighterToRosterCommand, ElementName=Main}"
+                        />
+                    <Button 
+                        Content="Delete Current Fighter"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        ToolTip="Removes the currently selected fighter from the roster."
+                        Command="{Binding Path=DataContext.DeleteFighterFromRosterCommand, ElementName=Main}"
                         />
                 </StackPanel>
-            </Border>
+
+                <!--Points Display-->
+                  <StackPanel 
+                     Orientation="Horizontal">
+                    <Label 
+                      Content="Current Points:"
+                      Style="{StaticResource PrimaryLabelStyle}"
+                      Margin="10,1,1,1"/>
+                    <Border
+                       Style="{StaticResource PrimaryBorderStyle}">
+                    <Label
+                       Content="{Binding CurrentRoster.CurrentPoints}"
+                       Style="{StaticResource PrimaryLabelStyle}"/>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
+            
+            
 
             <!-- Unit Data Display -->
             <StackPanel
@@ -194,7 +215,7 @@
                         Grid.Row="0"
                         Style="{StaticResource PrimaryLabelStyle}"
                         HorizontalAlignment="Left"
-                        ToolTip=""
+                        ToolTip="Name of your fighter."
                         />
                 <TextBox
                         Grid.Column="1"
@@ -213,11 +234,31 @@
                         Grid.Row="1"
                         Style="{StaticResource PrimaryLabelStyle}"
                         HorizontalAlignment="Left"
+                        ToolTip="Type of fighter, such as a Tactical Marine Gunner"
                         />
                 <TextBox
                         Grid.Column="1"
                         Grid.Row="1"
                         Text="{Binding CurrentFighter.FighterType}"
+                        Style="{StaticResource PrimaryTextBoxStyle}"
+                        Width="500"
+                        Height="25"
+                        HorizontalAlignment="Left"
+                        Margin="8,0,0,0"
+                        Padding="1"/>
+
+                <!--Type Box-->
+                <Label 
+                        Content="Base Cost"
+                        Grid.Row="1"
+                        Style="{StaticResource PrimaryLabelStyle}"
+                        HorizontalAlignment="Left"
+                        ToolTip="Starting points cost of the fighter. Do NOT include equipment costs, they will be calculated seperately."
+                        />
+                <TextBox
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="{Binding CurrentFighter.FighterCost}"
                         Style="{StaticResource PrimaryTextBoxStyle}"
                         Width="500"
                         Height="25"
@@ -231,6 +272,7 @@
                         Grid.Row="2"
                         Style="{StaticResource PrimaryLabelStyle}"
                         HorizontalAlignment="Left"
+                        ToolTip="What specialization your fighter possesses. If not a specialist, leave as NONE."
                         />
                 <ComboBox
                     ItemsSource="{Binding CurrentFighter.FighterSpecializationOptions}"
@@ -256,20 +298,20 @@
 
                     <!-- Ranged Equipment -->
                     <TabItem 
-                    Header="Ranged">
-
+                    Header="Ranged"
+                    ToolTip="Any ranged weapons assigned to this fighter.">
                         <DataGrid
                             Height="Auto"
-                            ItemsSource="{Binding CurrentLocation.LocationInventory}"
-                            SelectedItem="{Binding CurrentGameItem}"
+                            ItemsSource="{Binding CurrentFighter.FighterRangedWeaponOptions}"
+                            SelectedItem="{Binding SelectedWargear}"
                             AutoGenerateColumns="False"
                             HeadersVisibility="Column"
                             Style="{StaticResource PrimaryDataGridStyle}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
-                                    Header="Name"
+                                    Header="Name" 
                                     IsReadOnly="True"
-                                    Binding="{Binding GameItem.ItemName, Mode=OneWay}"
+                                    Binding="{Binding ItemName, Mode=OneWay}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -281,7 +323,7 @@
                                 <DataGridTextColumn
                                     Header="Description"
                                     IsReadOnly="True"
-                                    Binding="{Binding GameItem.ItemDescription, Mode=OneWay}"
+                                    Binding="{Binding ItemDescription, Mode=OneWay}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -294,7 +336,7 @@
                                     Header="Cost"
                                     IsReadOnly="True"
                                     Width="0.3*"
-                                    Binding ="{Binding Quantity, Mode=OneWay}"/>
+                                    Binding ="{Binding ItemCost, Mode=OneWay}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
@@ -302,11 +344,10 @@
                     <!-- Melee Equipment-->
                     <TabItem 
                     Header="Melee">
-
                         <DataGrid
                             Height="Auto"
-                            ItemsSource="{Binding CurrentLocation.LocationInventory}"
-                            SelectedItem="{Binding CurrentGameItem}"
+                            ItemsSource="{Binding CurrentFighter.FighterMeleeWeaponOptions}"
+                            SelectedItem="{Binding SelectedWargear}"
                             AutoGenerateColumns="False"
                             HeadersVisibility="Column"
                             Style="{StaticResource PrimaryDataGridStyle}">
@@ -314,7 +355,7 @@
                                 <DataGridTextColumn
                                     Header="Name"
                                     IsReadOnly="True"
-                                    Binding="{Binding GameItem.ItemName, Mode=OneWay}"
+                                    Binding="{Binding ItemName, Mode=OneWay}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -326,7 +367,7 @@
                                 <DataGridTextColumn
                                     Header="Description"
                                     IsReadOnly="True"
-                                    Binding="{Binding GameItem.ItemDescription, Mode=OneWay}"
+                                    Binding="{Binding ItemDescription, Mode=OneWay}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -339,7 +380,7 @@
                                     Header="Cost"
                                     IsReadOnly="True"
                                     Width="0.3*"
-                                    Binding ="{Binding Quantity, Mode=OneWay}"/>
+                                    Binding ="{Binding ItemCost, Mode=OneWay}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
@@ -347,11 +388,10 @@
                     <!-- Other Equipment -->
                     <TabItem 
                     Header="Wargear">
-
                         <DataGrid
                             Height="Auto"
-                            ItemsSource="{Binding CurrentLocation.LocationInventory}"
-                            SelectedItem="{Binding CurrentGameItem}"
+                            ItemsSource="{Binding CurrentFighter.FighterWargearOptions}"
+                            SelectedItem="{Binding SelectedWargear}"
                             AutoGenerateColumns="False"
                             HeadersVisibility="Column"
                             Style="{StaticResource PrimaryDataGridStyle}">
@@ -359,7 +399,7 @@
                                 <DataGridTextColumn
                                     Header="Name"
                                     IsReadOnly="True"
-                                    Binding="{Binding GameItem.ItemName, Mode=OneWay}"
+                                    Binding="{Binding ItemName, Mode=OneWay}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -371,7 +411,7 @@
                                 <DataGridTextColumn
                                     Header="Description"
                                     IsReadOnly="True"
-                                    Binding="{Binding GameItem.ItemDescription, Mode=OneWay}"
+                                    Binding="{Binding ItemDescription, Mode=OneWay}"
                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -384,7 +424,7 @@
                                     Header="Cost"
                                     IsReadOnly="True"
                                     Width="0.3*"
-                                    Binding ="{Binding Quantity, Mode=OneWay}"/>
+                                    Binding ="{Binding ItemCost, Mode=OneWay}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
