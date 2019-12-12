@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CIT255_KT_list_builder.Models
 {
     // todo:  Heavy refactoring to remove unused code and do a general cleanup. This class is especially bloated...
-    public class Fighter
+    public class Fighter : ObservableObject
     {
         #region ENUMS
        public enum Specializations
@@ -74,22 +74,35 @@ namespace CIT255_KT_list_builder.Models
             {
                 _fighterCost = value;
                 CalculateTotalFighterCost();
+                OnPropertyChanged(nameof(FighterCost));
             }
         }
         public int FighterTotalCost
         {
             get { return _fighterTotalCost; }
-            set { _fighterTotalCost = value; }
+            set
+            {
+                _fighterTotalCost = value;
+                OnPropertyChanged(nameof(FighterTotalCost));
+            }
         }
         public string FighterName
         {
             get { return _fighterName; }
-            set { _fighterName = value; }
+            set
+            {
+                _fighterName = value;
+                OnPropertyChanged(nameof(FighterName));
+            }
         }
         public string FighterType
         {
             get { return _fighterType; }
-            set { _fighterType = value; }
+            set
+            {
+                _fighterType = value;
+                OnPropertyChanged(nameof(FighterType));
+            }
         }
         public string FighterFaction
         {
@@ -137,6 +150,7 @@ namespace CIT255_KT_list_builder.Models
             {
                 _fighterMeleeWeaponsOptions = value;
                 CalculateTotalFighterCost();
+                OnPropertyChanged(nameof(FighterMeleeWeaponOptions));
             }
         }
         public List<FighterRangedWeapons> FighterRangedWeaponOptions
@@ -146,6 +160,7 @@ namespace CIT255_KT_list_builder.Models
             {
                 _fighterRangedWeaponOptions = value;
                 CalculateTotalFighterCost();
+                OnPropertyChanged(nameof(FighterRangedWeaponOptions));
             }
         }
         public List<FighterWargear> FighterWargearOptions
@@ -155,6 +170,7 @@ namespace CIT255_KT_list_builder.Models
             {
                 _fighterWargearOptions = value;
                 CalculateTotalFighterCost();
+                OnPropertyChanged(nameof(FighterWargearOptions));
             }
         }
         public List<Specializations> FighterSpecializationOptions

@@ -207,7 +207,7 @@
                 </StackPanel>
 
                 <!--Points Display-->
-                  <StackPanel 
+                <StackPanel 
                      Orientation="Horizontal">
                     <Label 
                       Content="Current Points:"
@@ -215,24 +215,20 @@
                       Margin="10,1,1,1"/>
                     <Border
                        Style="{StaticResource PrimaryBorderStyle}">
-                    <Label
+                        <Label
                        Content="{Binding CurrentRoster.CurrentPoints}"
                        Style="{StaticResource PrimaryLabelStyle}"/>
                     </Border>
                 </StackPanel>
-                    
-         
             </StackPanel>
-
-            
-            
+           
 
             <!-- Unit Data Display -->
             <StackPanel
                 Grid.Column="1" Grid.ColumnSpan="2"
                 Margin="10,10,10,10">
 
-                <Border
+                <!--<Border
                     Style="{StaticResource PrimaryBorderStyle}"
                     Margin="10"
                     MaxWidth="200">
@@ -242,7 +238,15 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     MaxWidth="200"/>
-                </Border>
+                </Border>-->
+                <!-- Exit Button -->
+                <Button
+                    Content="Exit"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    HorizontalAlignment="Right"
+                    Foreground="Crimson"
+                    ToolTip="Closes the application. Be sure to save your work!"
+                   Command="{Binding Path=DataContext.CloseApplicationCommand, ElementName=Main}"/>
 
                 <!--Name Box -->
                 <Label 

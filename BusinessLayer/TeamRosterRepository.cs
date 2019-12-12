@@ -37,6 +37,7 @@ namespace CIT255_KT_list_builder.DataAccessLayer
         public TeamRosterRepository()
         {
             _dataService = SetDataService();
+            _fighterRosters = new List<FighterList>();
             try
             {
                 _fighterRosters = _dataService.ReadAll() as List<FighterList>;
@@ -98,10 +99,10 @@ namespace CIT255_KT_list_builder.DataAccessLayer
         /// </summary>
         /// <param name="fighterList"></param>
         public void CreateRoster(FighterList fighterList)
-        {
+        {///
             try
             {
-                fighterList.ListID = NextID();
+                //fighterList.ListID = NextID();
                 _fighterRosters.Add(fighterList);
                 _dataService.WriteAll(_fighterRosters);
             }
@@ -159,7 +160,8 @@ namespace CIT255_KT_list_builder.DataAccessLayer
         /// </summary>
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _dataService = null;
+            _fighterRosters = null;
         }
         
         /// <summary>

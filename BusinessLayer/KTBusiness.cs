@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CIT255_KT_list_builder.Models;
 using CIT255_KT_list_builder.DataAccessLayer;
 using CIT255_KT_list_builder.Data;
+using System.Windows;
 
 namespace CIT255_KT_list_builder.BusinessLayer
 {
@@ -152,13 +153,17 @@ namespace CIT255_KT_list_builder.BusinessLayer
                     }
 
                     FileIoStatus = FileIoMessage.Complete;
+                    MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
                 }
             }
             catch (Exception)
             {
                 FileIoStatus = FileIoMessage.FileAccessError;
+                MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
             }
-            
+
         }
 
         /// <summary>
@@ -177,17 +182,23 @@ namespace CIT255_KT_list_builder.BusinessLayer
                     }
 
                     FileIoStatus = FileIoMessage.Complete;
-                    
+                    MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
+
                 }
                 else
                 {
                     FileIoStatus = FileIoMessage.RecordNotFound;
+                    MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
                 }
             }
             catch (Exception)
             {
 
                 FileIoStatus = FileIoMessage.FileAccessError;
+                MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
             }
         }
        
@@ -207,16 +218,22 @@ namespace CIT255_KT_list_builder.BusinessLayer
                     }
 
                     FileIoStatus = FileIoMessage.Complete;
+                    MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
                 }
                 else
                 {
                     FileIoStatus = FileIoMessage.RecordNotFound;
+                    MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
                 }
             }
             catch (Exception)
             {
 
                 FileIoStatus = FileIoMessage.FileAccessError;
+                MessageBoxResult notice = System.Windows.MessageBox.Show($"{FileIoStatus}", "Status", System.Windows.MessageBoxButton.OK);
+
             }
         }
         

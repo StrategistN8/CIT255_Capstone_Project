@@ -284,7 +284,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
 
             //Initialize collections:
             _availableRosters = new ObservableCollection<FighterList>(SeedData.GenerateRoster());
-            //  _availableRosters = new ObservableCollection<FighterList>(kTBusiness.AllRosters());
+           // _availableRosters = new ObservableCollection<FighterList>(kTBusiness.AllRosters());
             _availableRostersName = new ObservableCollection<string>();
 
             // Misc.
@@ -293,8 +293,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
             _currentRoster = _availableRosters.FirstOrDefault(r => r.ListID > 0);
             _selectedRosterName = _currentRoster.ListName;
             _currentFighter = _currentRoster.SelectedFighters.FirstOrDefault( f => f.FighterID > 0);
-            
-                   
+            _selectedWargear = _currentFighter.FighterRangedWeaponOptions.FirstOrDefault();                   
         }
        
         #endregion
@@ -364,7 +363,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
             {
                 MessageBoxResult notice = System.Windows.MessageBox.Show($"Confirm: Save {CurrentRoster.ListName} to database?", "Confirm", System.Windows.MessageBoxButton.YesNo);
 
-                if (notice == MessageBoxResult.OK)
+                if (notice == MessageBoxResult.Yes)
                 {
                     _ktBusiness.AddRosterToPersistance(CurrentRoster);
                 }
@@ -390,6 +389,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
                     FighterEquipmentList = new List<FighterWargear>(),
                     FighterMeleeWeaponOptions = new List<FighterMeleeWeapons>(),
                     FighterRangedWeaponOptions = new List<FighterRangedWeapons>(),
+                    FighterWargearOptions = new List<FighterWargear>(),
                     FighterSpecialization = Fighter.Specializations.NONE                   
 
                 };

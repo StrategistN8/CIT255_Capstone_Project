@@ -71,7 +71,7 @@ namespace CIT255_KT_list_builder.Models
             set
             {
                 _selectedFighters = value;
-                OnPropertyChanged(nameof(CurrentPoints));
+                OnPropertyChanged(nameof(SelectedFighters));
             }
         }
 
