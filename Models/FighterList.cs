@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CIT255_KT_list_builder.Models
 {
+    // todo:  Heavy refactoring to remove unused code and do a general cleanup of the class.
     public class FighterList : ObservableObject
     {
         #region FIELDS       
@@ -16,10 +17,7 @@ namespace CIT255_KT_list_builder.Models
         private int _currentPoints;
         private int _maxPoints;
         private List<Fighter> _availableFighters;
-        private List<Fighter> _selectedFighters;
-        
-
-       
+        private List<Fighter> _selectedFighters;     
 
         #endregion
 
@@ -80,7 +78,11 @@ namespace CIT255_KT_list_builder.Models
         #endregion
 
         #region CONSTRUCTOR
-
+        public FighterList()
+        {
+            AvailableFighters = new List<Fighter>();
+            SelectedFighters = new List<Fighter>();
+        }
         #endregion
 
         #region METHODS

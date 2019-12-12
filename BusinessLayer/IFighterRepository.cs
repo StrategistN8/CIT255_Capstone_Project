@@ -7,6 +7,7 @@ using CIT255_KT_list_builder.Models;
 
 namespace CIT255_KT_list_builder.DataAccessLayer
 {
+    // todo:  I'm not sure I actually need this, since the Roster is now providing the container for CRUD operations.
     interface FighterRepository : IRepository
     {
         IEnumerable<FighterList> ReadAll();

@@ -13,10 +13,12 @@ using CIT255_KT_list_builder.BusinessLayer;
 using CIT255_KT_list_builder.DataAccessLayer;
 using CIT255_KT_list_builder.Data;
 using CIT255_KT_list_builder.Commands;
+using CIT255_KT_list_builder.PresentationLayer.Views;
 
 
 namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
 {
+    // todo:  Heavy refactoring to remove unused code and do a general cleanup.
    public class KTViewModel : ObservableObject 
     {
         #region ENUMS
@@ -33,6 +35,8 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
 
         #region FIELDS
         private KTBusiness _ktBusiness;
+        private RosterPrompt _promptWindow;
+
         private ActiveOperation _currentOperation;
         private FighterList _currentRoster;
         private Fighter _currentFighter;
@@ -49,9 +53,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
 
         private string _currentFighterImageSource;
         private string _selectedRosterName;
-
-      
-
+        private string _newRosterName;
 
         #endregion
 
@@ -60,6 +62,11 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         {
             get { return _ktBusiness; }
             set { _ktBusiness = value; }
+        }
+        public RosterPrompt PromptWindow
+        {
+            get { return _promptWindow; }
+            set { _promptWindow = value; }
         }
         private ActiveOperation CurrentOperation
         {
@@ -84,11 +91,15 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
                 {
                     return;
                 }
+
                 _currentFighter = value;
-                _currentFighter.CompileFighterInventory();
-                _currentRoster.GetListPoints();
+                if (_currentFighter != null)
+                {
+                    _currentFighter.CompileFighterInventory();
+                    _currentRoster.GetListPoints();
+                }
+                
                 OnPropertyChanged(nameof(CurrentFighter));
-                OnPropertyChanged(nameof(CurrentRoster));
             }
         }
         public Fighter DisplayFighter
@@ -192,6 +203,11 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
                 SetCurrentRosterByName();
             }
         }
+        public string NewRosterName
+        {
+            get { return _newRosterName; }
+            set { _newRosterName = value; }
+        }
         public string Errors { get; set; }
 
         #endregion
@@ -235,21 +251,19 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         {
             get { return new RelayCommand(new Action(AddFighter)); }
         }
-
+        public ICommand CallPromptCommand
+        {
+            get { return new RelayCommand(new Action(LaunchPromptWindow)); }
+        }
         public ICommand CreateRosterCommand
         {
             get { return new RelayCommand(new Action(CreateNewRoster)); }
         }
+        public ICommand DeleteRosterCommand
+        {
+            get { return new RelayCommand(new Action(DeleteRoster)); }
+        }
 
-        //public ICommand DeleteRoster
-        //{
-        //    get { return new RelayCommand(new Action(DeleteRoster)); }
-        //}
-        
-        //public ICommand CreateNewRosterCommand
-        //{
-        //    get { return new RelayCommand(new Action())};
-        //}
         #endregion
 
         #region CONSTRUCTOR
@@ -261,7 +275,9 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         {   
             // Initialize business logic:
             _ktBusiness = kTBusiness;
-            
+            _promptWindow = new Views.RosterPrompt();
+            _promptWindow.DataContext = this;
+
             //Initialize collections:
             _availableRosters = new ObservableCollection<FighterList>(SeedData.GenerateRoster());
             //  _availableRosters = new ObservableCollection<FighterList>(kTBusiness.AllRosters());
@@ -292,6 +308,7 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         /// </summary>
         private void CreateRosterSelectList()
         {
+            AvailableRostersName.Clear();
             foreach (FighterList roster in AvailableRosters)
             {
                 AvailableRostersName.Add(roster.ListName);
@@ -303,17 +320,43 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         /// </summary>
         private void CreateNewRoster ()
         {
-            FighterList newList = new FighterList();
+            PromptWindow.Close();
+            FighterList newList = new FighterList
+            {
+                ListID = CreateFighterID(CurrentRoster.SelectedFighters),
+                ListName = NewRosterName
+            };
             AvailableRosters.Add(newList);
-
+            CreateRosterSelectList();
+            CurrentRoster = newList;
         }
 
+        /// <summary>
+        /// Method that deletes rosters.
+        /// </summary>
+        private void DeleteRoster()
+        {
+            if (_currentRoster != null)
+            {
+                MessageBoxResult notice = System.Windows.MessageBox.Show($"Confirm: Delete {CurrentRoster.ListName}?", "Confirm", System.Windows.MessageBoxButton.YesNo);
+
+                if (notice == MessageBoxResult.Yes)
+                {
+                   // _ktBusiness.DeleteRosterFromPersistance(CurrentRoster.ListID);
+                    AvailableRosters.Remove(CurrentRoster);
+                    CreateRosterSelectList();
+                    CurrentRoster = AvailableRosters.FirstOrDefault();
+
+                }
+            }
+        }
+    
         /// <summary>
         /// Sends current roster to persistance:
         /// </summary>
         private void SaveCurrentRoster()
         {
-            if (_currentFighter != null)
+            if (_currentRoster != null)
             {
                 MessageBoxResult notice = System.Windows.MessageBox.Show($"Confirm: Save {CurrentRoster.ListName} to database?", "Confirm", System.Windows.MessageBoxButton.YesNo);
 
@@ -507,6 +550,15 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
 
         #region HELPER METHODS
         
+        /// <summary>
+        /// Shows the prompt window used to get roster info from user.
+        /// </summary>
+        private void LaunchPromptWindow()
+        {
+            
+            PromptWindow.Show();
+        }
+
         /// <summary>
         /// Helper method that sources the image for the view:
         /// </summary>

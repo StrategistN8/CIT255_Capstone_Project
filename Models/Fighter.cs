@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CIT255_KT_list_builder.Models
 {
+    // todo:  Heavy refactoring to remove unused code and do a general cleanup. This class is especially bloated...
     public class Fighter
     {
         #region ENUMS

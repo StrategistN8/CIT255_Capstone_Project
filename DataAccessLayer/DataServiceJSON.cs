@@ -12,6 +12,7 @@ using CIT255_KT_list_builder.Models;
 
 namespace CIT255_KT_list_builder.DataAccessLayer 
 {
+    // todo:  Figure out what the stream reader doesn't like about my access string... 
     class DataServiceJSON : IDataService
     {
 

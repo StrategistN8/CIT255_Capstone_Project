@@ -116,6 +116,14 @@
                      Orientation="Horizontal"
                     HorizontalAlignment="Left"
                     Margin="10,0,0,0">
+                    <Button
+                        Content="New"
+                        HorizontalContentAlignment="Center"
+                        Padding="10,1,10,1"
+                        FontFamily="Agency FB"
+                        Margin="10,0,10,10"
+                        ToolTip="Creates a new blank roster. You will need to save to add it to the database."
+                        Command="{Binding Path=DataContext.CallPromptCommand, ElementName=Main}"/>
                     <Button 
                         Content="Save"
                         HorizontalContentAlignment="Center"
@@ -132,7 +140,7 @@
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
                         ToolTip="Removes the current roster from the database. This cannot be undone, so be careful!"
-                        Command="{Binding Path=DataContext.DeleteFighterFromRosterCommand, ElementName=Main}"
+                        Command="{Binding Path=DataContext.DeleteRosterCommand, ElementName=Main}"
                         />
                 </StackPanel>
                 <!-- Fighter Display-->

@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+/// <summary>
+/// Velis' code for event-driven programming. Used with permission. 
+/// </summary>
 namespace CIT255_KT_list_builder.Commands
 {
     class RelayCommand : ICommand

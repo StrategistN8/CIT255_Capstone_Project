@@ -116,6 +116,9 @@
     <Compile Include="Models\FighterMeleeWeapons.cs" />
     <Compile Include="Models\FighterRangedWeapons.cs" />
     <Compile Include="Models\FighterWargear.cs" />
+    <Compile Include="PresentationLayer\Views\RosterPrompt.xaml.cs">
+      <DependentUpon>RosterPrompt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -154,6 +157,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="PresentationLayer\Views\KTBuilderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PresentationLayer\Views\RosterPrompt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +226,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PresentationLayer\Views\Backgrounds\KTLB_BGGSC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PresentationLayer\Views\Backgrounds\KTLB_BGTYR.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />

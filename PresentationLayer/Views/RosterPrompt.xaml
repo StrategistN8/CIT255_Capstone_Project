@@ -1,0 +1,97 @@
+﻿<Window x:Name="NewRoster"
+        x:Class="CIT255_KT_list_builder.PresentationLayer.Views.RosterPrompt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIT255_KT_list_builder.PresentationLayer.Views"
+        mc:Ignorable="d"
+        Title="New Roster" Height="200" Width="350" WindowStartupLocation="CenterOwner">
+    <!-- Resources -->
+    <Window.Resources>
+        <Style x:Key="PrimaryGridStyle" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Backgrounds\KTLB_BGTYR.jpg" Stretch="UniformToFill"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="InnerGridStyle" TargetType="Grid">
+            <Setter Property="Opacity" Value="0.80"/>
+            <Setter Property="Background" Value="DarkSlateGray"/>
+            
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="PrimaryListBoxStyle" TargetType="ListBox">
+            <Setter Property="Background" Value="CadetBlue"/>
+            <Setter Property="Opacity" Value="0.7"/>
+        </Style>
+        <Style x:Key="PrimaryLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="Agency FB"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="DataGridLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="Agency FB"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,1,10,1"/>
+            <Setter Property="FontFamily" Value="Agency FB"/>
+        </Style>
+        <Style x:Key="PrimaryBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="DimGray"/>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+        <Style x:Key="PrimaryTabStyle" TargetType="TabControl">
+            <Setter Property="Background" Value="CadetBlue"/>
+            <Setter Property="FontFamily" Value="Agency FB"/>
+        </Style>
+        <Style x:Key="PrimaryDataGridStyle" TargetType="DataGrid">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+        <Style x:Key="PrimaryTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="FontFamily" Value="Agency FB"/>
+            <Setter Property="MaxLength" Value="300"/>
+        </Style>
+        <Style x:Key="PrimaryComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="FontFamily" Value="Agency FB"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </Window.Resources>
+
+    <!---Primary Grid -->
+    <Grid
+        Style="{StaticResource PrimaryGridStyle}">
+        
+        <!-- Inner Grid -->
+        <Grid
+            Style="{StaticResource InnerGridStyle}">
+            <StackPanel
+                VerticalAlignment="Center">
+                <Label
+                Style="{StaticResource PrimaryLabelStyle}"
+                Content="Name your roster:"/>
+                <TextBox
+                    Text="{Binding NewRosterName}"
+                    Style="{StaticResource PrimaryTextBoxStyle}"
+                    Margin="20,0,20,0"/>
+                <Button
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Width="100"
+                    Margin="10"
+                    Content="Confirm"
+                    Command="{Binding Path=DataContext.CreateRosterCommand, ElementName=NewRoster}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CIT255_KT_list_builder.Models
 {
+    // todo:  Add additional parameters to help structure a description string for a melee weapon. 
     public class FighterMeleeWeapons : FighterWargear
     {
         #region ENUMS

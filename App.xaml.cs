@@ -21,7 +21,8 @@ namespace CIT255_KT_list_builder
         {
             KTBusiness ktBusiness = new KTBusiness();
             KTViewModel mainWindowViewModel = new KTViewModel(ktBusiness);
-
+            //RosterPrompt promtWindow = new RosterPrompt();
+            //promtWindow.DataContext = mainWindowViewModel;
             KTBuilderWindow appWindow = new KTBuilderWindow();
             appWindow.DataContext = mainWindowViewModel;
             appWindow.Show();
