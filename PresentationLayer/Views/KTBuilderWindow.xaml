@@ -131,7 +131,7 @@
                         FontFamily="Agency FB"
                         Margin="10,0,10,10"
                         ToolTip="Save current roster to the database. If you do not save any changes will be lost when the application restarts"
-                        Command="{Binding Path=DataContext.AddNewFighterToRosterCommand, ElementName=Main}"
+                        Command="{Binding Path=DataContext.SaveRosterCommand, ElementName=Main}"
                         />
                     <Button 
                         Content="Delete"

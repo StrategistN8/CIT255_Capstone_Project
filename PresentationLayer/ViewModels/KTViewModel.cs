@@ -263,6 +263,10 @@ namespace CIT255_KT_list_builder.PresentationLayer.ViewModels
         {
             get { return new RelayCommand(new Action(DeleteRoster)); }
         }
+        public ICommand SaveRosterCommand
+        {
+            get { return new RelayCommand(new Action(SaveCurrentRoster)); }
+        }
 
         #endregion
 
